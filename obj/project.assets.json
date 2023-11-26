@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub/ArtHub/ArtHub.csproj",
+      "projectUniqueName": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj",
       "projectName": "ArtHub",
-      "projectPath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub/ArtHub/ArtHub.csproj",
+      "projectPath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj",
       "packagesPath": "/Users/mehta/.nuget/packages/",
-      "outputPath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub/ArtHub/obj/",
+      "outputPath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/mehta/.nuget/NuGet/NuGet.Config"

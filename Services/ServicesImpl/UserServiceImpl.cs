@@ -1,50 +1,36 @@
-﻿//using System;
-//using ArtHub.Models;
-//using ArtHub.TestData;
+﻿using System;
+using ArtHub.dto;
+using ArtHub.Models;
 
-//namespace ArtHub.Services.ServicesImpl
-//{
-    
-//    public class UserServiceImpl : UserService
-//	{
-      
-        
+namespace ArtHub.Services.ServicesImpl
+{
 
-//        public UserServiceImpl()
-//		{
+    public class UserServiceImpl : UserService
+    {
+        public User CreateUser(User newUser)
+        {
+            throw new NotImplementedException();
+        }
 
-//        }
+        public void DeleteUser(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-//        public User CreateUser(User newUser)
-//        {
-//            UserData.users.Append(newUser);
-//            Console.Write(UserData.users);
-//            return newUser;
-//        }
+        public List<User> GetAllUsers()
+        {
+            throw new NotImplementedException();
+        }
 
-//        public void DeleteUser(int id)
-//        {
-//            throw new NotImplementedException();
-//        }
+        public User GetUserById(int id)
+        {
+            throw new NotImplementedException();
+        }
 
-//        public IEnumerable<User> GetAllUsers()
-//        {
-//            throw new NotImplementedException();
-//        }
-
-//        public User GetUserById(int id)
-//        {
-//            Console.Write("Entered Here");
-//            User user = UserData.users.FirstOrDefault(u => u.Id == id);
-
-//            return user;
-
-//        }
-
-//        public User UpdateUser(int id, User updatedUser)
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-//}
+        public User UpdateUser(UpdateUserDto userDto, User oldUser)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
 

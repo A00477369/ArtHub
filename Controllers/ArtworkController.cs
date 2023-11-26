@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using ArtHub.dto;
+using ArtHub.Filters;
 using ArtHub.Models;
+using ArtHub.Services;
 using Microsoft.AspNetCore.Mvc;
 namespace ArtHub.Controllers
 {
@@ -19,7 +21,7 @@ namespace ArtHub.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public ActionResult GetArtwork(int id)
+        public ActionResult GetArtworkById(int id)
         {
             Artwork artwork = _artworkService.GetArtworkById(id);
 
@@ -40,20 +42,22 @@ namespace ArtHub.Controllers
             }
 
 
+            Artwork createdArtwork = new Artwork(1,artworkDto.Title,artworkDto.Description,artworkDto.ImageUrl,artworkDto.MinimumBid,false,artworkDto.SellerId,artworkDto.CategoryId,DateTime.Now,DateTime.Now,0,StatusType.Draft);
 
+ 
             createdArtwork = _artworkService.CreateArtwork(createdArtwork);
-            return CreatedAtAction(nameof(GetArtwork), new { id = createdArtwork.Id }, createdArtwork);
+            return Ok(createdArtwork);
         }
 
-        [HttpPut("{id}")]
-        public ActionResult UpdateArtwork(int id, [FromBody] UpdateArtworkDto artworkDto)
+        [HttpPut]
+        public ActionResult UpdateArtwork([FromBody] UpdateArtworkDto artworkDto)
         {
             if (artworkDto == null)
             {
                 return BadRequest("Invalid artwork data");
             }
 
-            Artwork existingArtwork = _artworkService.GetArtworkById(id);
+            Artwork existingArtwork = _artworkService.GetArtworkById(artworkDto.Id);
 
             if (existingArtwork == null)
             {
@@ -72,6 +76,30 @@ namespace ArtHub.Controllers
 
             return Ok(artworks);
         }
+
+        [HttpPost("filter")]
+        public ActionResult ArtworkFilter(ArtworkFilter filter)
+        {
+            List<Artwork> artworks = _artworkService.filter(filter); 
+
+            return Ok(artworks);
+        }
+
+        [HttpGet("startAuction/{id:int}")]
+        public ActionResult StartAuction(int id)
+        {
+            Artwork artwork = _artworkService.StartAuction(id);
+            return Ok(artwork);
+        }
+
+        [HttpGet("stopAuction/{id:int}")]
+        public ActionResult StopAuction(int id)
+        {
+            Artwork artwork = _artworkService.StopAuction(id);
+            return Ok(artwork);
+        }
+
+
     }
 
 }
