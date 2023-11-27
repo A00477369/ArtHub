@@ -9,6 +9,8 @@ builder.Services.AddControllersWithViews();
 // Register IUserService and its implementation
 builder.Services.AddSingleton<UserService, UserServiceImpl>();
 builder.Services.AddSingleton<ArtworkService, ArtworkServiceImpl>();
+builder.Services.AddSingleton<CategoryService, CategoryServiceImpl>();
+builder.Services.AddSingleton<BidService, BidServiceImpl>();
 
 var app = builder.Build();
 
