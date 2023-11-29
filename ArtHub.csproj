@@ -11,14 +11,12 @@
   <ItemGroup>
     <None Remove="Services\" />
     <None Remove="Services\ServicesImpl\" />
-    <None Remove="TestData\" />
     <None Remove="dto\" />
     <None Remove="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Services\ServicesImpl\" />
-    <Folder Include="TestData\" />
     <Folder Include="dto\" />
     <Folder Include="Filters\" />
   </ItemGroup>
