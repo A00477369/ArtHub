@@ -6,6 +6,11 @@ namespace ArtHub.Services.ServicesImpl
 {
     public class CategoryServiceImpl : CategoryService
     {
+        private readonly AppDbContext _context;
+        public CategoryServiceImpl(AppDbContext context)
+        {
+            _context = context;
+        }
         public Category CreateCategory(Category category)
         {
             throw new NotImplementedException();
@@ -13,12 +18,13 @@ namespace ArtHub.Services.ServicesImpl
 
         public List<Category> GetAllCategories()
         {
-            throw new NotImplementedException();
+            List<Category> categoryList = _context.Category.ToList();
+            return categoryList;
         }
 
         public Category GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Category.Find(id);
         }
 
         public Category UpdateCategory(UpdateCategoryDto dto, Category existingCategory)

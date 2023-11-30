@@ -4,12 +4,16 @@ using ArtHub.Models;
 
 namespace ArtHub.Services.ServicesImpl
 {
-
+   
     public class UserServiceImpl : UserService
     {
+        private readonly AppDbContext _context;
+        public UserServiceImpl(AppDbContext context) {
+            _context = context;
+          }
         public User CreateUser(User newUser)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public void DeleteUser(int id)
@@ -19,12 +23,14 @@ namespace ArtHub.Services.ServicesImpl
 
         public List<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            List<User> userList = _context.Users.ToList();
+            return userList;
         }
 
         public User GetUserById(int id)
         {
-            throw new NotImplementedException();
+            User user = _context.Users.Find(id);
+            return user;
         }
 
         public User UpdateUser(UpdateUserDto userDto, User oldUser)

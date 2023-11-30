@@ -11,7 +11,7 @@ namespace ArtHub.dto
         public string Mobile { get; set; }
         public string ProfilePictureUrl { get; set; }
         public string Gender { get; set; }
-        public string BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
     }
 }
 

@@ -73,6 +73,7 @@ namespace ArtHub.Controllers
         [HttpGet]
         public ActionResult GetAll()
         {
+            Console.WriteLine("Inside the controller");
             List<User> users = _userService.GetAllUsers();
 
             return Ok(users);
