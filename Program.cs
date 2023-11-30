@@ -1,5 +1,8 @@
-﻿using ArtHub.Services;
+﻿using System.Text;
+using ArtHub.Services;
 using ArtHub.Services.ServicesImpl;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,20 @@ builder.Services.AddSingleton<CategoryService, CategoryServiceImpl>();
 builder.Services.AddSingleton<BidService, BidServiceImpl>();
 builder.Services.AddSingleton<UserPreferenceService, UserPreferenceServiceImpl>();
 builder.Services.AddSingleton<TransactionService, TransactionServiceImpl>();
+
+// Authentication Configuration
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 var app = builder.Build();
 
@@ -28,6 +45,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
