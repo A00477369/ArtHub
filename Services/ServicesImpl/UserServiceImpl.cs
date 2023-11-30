@@ -1,24 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ArtHub.dto;
 using ArtHub.Models;
 
 namespace ArtHub.Services.ServicesImpl
 {
-   
     public class UserServiceImpl : UserService
     {
         private readonly AppDbContext _context;
-        public UserServiceImpl(AppDbContext context) {
+
+        public UserServiceImpl(AppDbContext context)
+        {
             _context = context;
-          }
+        }
+
         public User CreateUser(User newUser)
         {
-            return null;
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+            return newUser;
         }
 
         public void DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            User userToDelete = _context.Users.Find(id);
+
+            if (userToDelete != null)
+            {
+                _context.Users.Remove(userToDelete);
+                _context.SaveChanges();
+            }
         }
 
         public List<User> GetAllUsers()
@@ -35,8 +47,21 @@ namespace ArtHub.Services.ServicesImpl
 
         public User UpdateUser(UpdateUserDto userDto, User oldUser)
         {
-            throw new NotImplementedException();
+            if (oldUser != null)
+            {
+                
+                oldUser.FirstName = userDto.FirstName;
+                oldUser.LastName = userDto.LastName;
+                oldUser.Username = userDto.Username;
+                oldUser.Email = userDto.Email;
+                oldUser.Password = userDto.Password;
+                oldUser.Mobile = userDto.Mobile;
+                oldUser.ProfilePictureUrl = userDto.ProfilePictureUrl;
+                oldUser.Gender = userDto.Gender;
+                _context.SaveChanges();
+            }
+
+            return oldUser;
         }
     }
 }
-

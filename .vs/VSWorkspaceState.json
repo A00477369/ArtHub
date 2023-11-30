@@ -4,11 +4,9 @@
     "\\Controllers",
     "\\dto",
     "\\Models",
-    "\\obj\\Debug",
-    "\\obj\\Release",
     "\\Services",
     "\\Services\\ServicesImpl"
   ],
-  "SelectedNode": "\\Services\\CategoryService.cs",
+  "SelectedNode": "\\ArtHub.csproj",
   "PreviewInSolutionExplorer": false
 }
