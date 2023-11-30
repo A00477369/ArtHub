@@ -6,7 +6,7 @@ namespace ArtHub.Filters
 	public class ArtworkFilter
 	{
         private int? SellerId { get; set; }
-        private int? CategoryId { get; set; }
+        private List<int>? CategoryIds { get; set; }
         private StatusType? Status { get; set; }
 
         public String toQuery()
@@ -18,9 +18,11 @@ namespace ArtHub.Filters
                 query += " AND SellerId = " + SellerId;
             }
 
-            if (CategoryId != null)
+            if (CategoryIds != null && CategoryIds.Count > 0)
             {
-                query += " AND CategoryId = " + CategoryId;
+                // Use IN clause to filter by multiple category IDs
+                string categoryIdsString = string.Join(",", CategoryIds);
+                query += " AND CategoryId IN (" + categoryIdsString + ")";
             }
 
             if (Status != null)

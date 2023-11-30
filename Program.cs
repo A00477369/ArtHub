@@ -18,6 +18,8 @@ builder.Services.AddSingleton<UserService, UserServiceImpl>();
 builder.Services.AddSingleton<ArtworkService, ArtworkServiceImpl>();
 builder.Services.AddSingleton<CategoryService, CategoryServiceImpl>();
 builder.Services.AddSingleton<BidService, BidServiceImpl>();
+builder.Services.AddSingleton<UserPreferenceService, UserPreferenceServiceImpl>();
+builder.Services.AddSingleton<TransactionService, TransactionServiceImpl>();
 
 var app = builder.Build();
 
