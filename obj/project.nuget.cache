@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "0H0+DtqGEWVLVpEaifk7FSKZAScQxzHJOaH6W8Dbrb20iKIBh9SK/2S4DHD8RFQbfKIdSN1eOOi/jyFYOjzy+Q==",
+  "dgSpecHash": "ghySVQ0jV5T2qn0vdkLFXHDQBCoVPTGlIw4SQWGvolKQ3Ec2hwct303jtXiwaDlMu5T9iP3Dnh6YXszyI6VBGA==",
   "success": true,
   "projectFilePath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/mehta/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
