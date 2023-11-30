@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "0H0+DtqGEWVLVpEaifk7FSKZAScQxzHJOaH6W8Dbrb20iKIBh9SK/2S4DHD8RFQbfKIdSN1eOOi/jyFYOjzy+Q==",
+  "dgSpecHash": "644k9x75lP0wwCy6OFL4Hfdej8EabG4UbuAtETJ2Yu+MG48duIN6989W2aDQ0dJ6O5DWSlM6IekVucFXO4XNiA==",
   "success": true,
   "projectFilePath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/mehta/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.0/microsoft.aspnetcore.authentication.jwtbearer.7.0.0.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/microsoft.identitymodel.jsonwebtokens/6.15.1/microsoft.identitymodel.jsonwebtokens.6.15.1.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/microsoft.identitymodel.logging/6.15.1/microsoft.identitymodel.logging.6.15.1.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/microsoft.identitymodel.protocols/6.15.1/microsoft.identitymodel.protocols.6.15.1.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/6.15.1/microsoft.identitymodel.protocols.openidconnect.6.15.1.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/microsoft.identitymodel.tokens/6.15.1/microsoft.identitymodel.tokens.6.15.1.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/system.identitymodel.tokens.jwt/6.15.1/system.identitymodel.tokens.jwt.6.15.1.nupkg.sha512",
+    "/Users/mehta/.nuget/packages/system.security.cryptography.cng/4.5.0/system.security.cryptography.cng.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
