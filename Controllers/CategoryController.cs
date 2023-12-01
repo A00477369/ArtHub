@@ -27,7 +27,13 @@ namespace ArtHub.Controllers
                 return BadRequest("Invalid category data");
             }
 
-            Category category = new Category(1, dto.Title, DateTime.Now, dto.CreatedBy);
+            Category category = new Category
+            {
+                Title = dto.Title,
+                CreatedOn = DateTime.Now,
+                CreatedBy = dto.CreatedBy
+            };
+
 
             category = _categoryService.CreateCategory(category);
             return Ok(category);

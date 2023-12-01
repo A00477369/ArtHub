@@ -17,8 +17,14 @@ namespace ArtHub.Services.ServicesImpl
 
         public Category CreateCategory(Category category)
         {
+            Console.WriteLine($"Before adding to DbContext - Id: {category.Id}, Title: {category.Title}, CreatedOn: {category.CreatedOn}, CreatedBy: {category.CreatedBy}");
+
             _context.Category.Add(category);
+            Console.WriteLine($"After adding to DbContext - Id: {category.Id}, Title: {category.Title}, CreatedOn: {category.CreatedOn}, CreatedBy: {category.CreatedBy}");
+
             _context.SaveChanges();
+            Console.WriteLine($"After adding to DbContext - Id: {category.Id}, Title: {category.Title}, CreatedOn: {category.CreatedOn}, CreatedBy: {category.CreatedBy}");
+
             return category;
         }
 

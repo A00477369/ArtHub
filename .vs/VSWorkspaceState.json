@@ -2,10 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Controllers",
-    "\\dto",
     "\\Models",
     "\\Services",
-    "\\Services\\ServicesImpl"
+    "\\Services\\ServicesImpl",
+    "\\wwwroot"
   ],
   "SelectedNode": "\\Models\\Category.cs",
   "PreviewInSolutionExplorer": false

@@ -52,7 +52,6 @@ C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\staticwebassets\msbuild.bu
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.ArtHub.props
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.ArtHub.props
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\scopedcss\bundle\ArtHub.styles.css
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\scopedcss\projectbundle\ArtHub.bundle.scp.css
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\ArtHub.dll
@@ -97,3 +96,4 @@ C:\Users\ASUS\Desktop\Arthub2\ArtHub\bin\Debug\net7.0\runtimes\win\lib\netstanda
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\ArtHub.csproj.AssemblyReference.cache
 C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\ArtHub.csproj.CopyComplete
+C:\Users\ASUS\Desktop\Arthub2\ArtHub\obj\Debug\net7.0\scopedcss\Services\Views\Shared\_Layout.cshtml.rz.scp.css

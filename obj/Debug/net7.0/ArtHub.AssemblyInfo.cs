@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArtHub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e3873482d300a2f91587b33acb7d924e0add4e1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25144dc5759e76c2fbe94719fe575943da7dc112")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArtHub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArtHub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
