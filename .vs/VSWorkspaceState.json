@@ -2,11 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Controllers",
+    "\\Filters",
     "\\Models",
     "\\Services",
     "\\Services\\ServicesImpl",
     "\\wwwroot"
   ],
-  "SelectedNode": "\\Models\\Category.cs",
+  "SelectedNode": "\\Services\\ServicesImpl\\BidServiceImpl.cs",
   "PreviewInSolutionExplorer": false
 }
