@@ -4,10 +4,10 @@
     "\\Controllers",
     "\\Filters",
     "\\Models",
+    "\\obj",
     "\\Services",
     "\\Services\\ServicesImpl",
     "\\wwwroot"
   ],
-  "SelectedNode": "\\Services\\ServicesImpl\\BidServiceImpl.cs",
   "PreviewInSolutionExplorer": false
 }
