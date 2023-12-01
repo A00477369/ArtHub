@@ -1,0 +1,10 @@
+# Ignore Visual Studio files and directories
+.vs/
+*.vsix
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore file patterns causing warnings or errors
+.vs/ArtHub/FileContentIndex/*.vsidx

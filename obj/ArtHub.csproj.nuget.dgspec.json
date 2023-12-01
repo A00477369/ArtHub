@@ -1,26 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj": {}
+    "C:\\Users\\ASUS\\Desktop\\Arthub2\\ArtHub\\ArtHub.csproj": {}
   },
   "projects": {
-    "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj": {
+    "C:\\Users\\ASUS\\Desktop\\Arthub2\\ArtHub\\ArtHub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Arthub2\\ArtHub\\ArtHub.csproj",
         "projectName": "ArtHub",
-        "projectPath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj",
-        "packagesPath": "/Users/mehta/.nuget/packages/",
-        "outputPath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/obj/",
+        "projectPath": "C:\\Users\\ASUS\\Desktop\\Arthub2\\ArtHub\\ArtHub.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\Desktop\\Arthub2\\ArtHub\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mehta/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/sdk/7.0.309/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +40,22 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -63,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

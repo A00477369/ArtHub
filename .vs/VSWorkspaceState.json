@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Filters",
+    "\\Models",
+    "\\obj",
+    "\\Services",
+    "\\Services\\ServicesImpl",
+    "\\wwwroot"
+  ],
+  "PreviewInSolutionExplorer": false
+}
