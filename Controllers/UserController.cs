@@ -2,9 +2,11 @@
 using ArtHub.dto;
 using ArtHub.Models;
 using ArtHub.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace ArtHub.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
@@ -31,7 +33,7 @@ namespace ArtHub.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public ActionResult CreateUser([FromBody] CreateUserDto userDto)
         {
             if (userDto == null)

@@ -21,6 +21,7 @@ namespace ArtHub.Services
 
         // Delete a user by ID
         void DeleteUser(int id);
+        User FindUserByIdentity(string identity);
     }
 
 }

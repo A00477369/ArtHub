@@ -4,13 +4,14 @@ using ArtHub.dto;
 using ArtHub.Filters;
 using ArtHub.Models;
 using ArtHub.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace ArtHub.Controllers
 {
-    
 
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class ArtworkController : ControllerBase
     {
         private readonly ArtworkService _artworkService;
@@ -20,7 +21,7 @@ namespace ArtHub.Controllers
             _artworkService = artworkService;
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}"),AllowAnonymous]
         public ActionResult GetArtworkById(int id)
         {
             Artwork artwork = _artworkService.GetArtworkById(id);
@@ -69,7 +70,7 @@ namespace ArtHub.Controllers
             return Ok(updatedArtwork);
         }
 
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public ActionResult GetAllArtworks()
         {
             List<Artwork> artworks = _artworkService.GetAllArtworks();
@@ -77,7 +78,8 @@ namespace ArtHub.Controllers
             return Ok(artworks);
         }
 
-        [HttpPost("filter")]
+
+        [HttpPost("filter"),AllowAnonymous]
         public ActionResult ArtworkFilter(ArtworkFilter filter)
         {
             List<Artwork> artworks = _artworkService.filter(filter); 

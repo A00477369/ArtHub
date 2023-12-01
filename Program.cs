@@ -3,7 +3,7 @@ using ArtHub.Services;
 using ArtHub.Services.ServicesImpl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-
+using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -31,6 +31,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+// Swagger Config
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ArtHub APIs", Version = "v1" });
+});
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,6 +57,14 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+// Enable Swagger middleware
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ArtHub APIs");
+    c.RoutePrefix = "swagger";
+});
 
 app.MapControllerRoute(
     name: "default",

@@ -1,0 +1,70 @@
+﻿# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+bin/
+obj/
+
+.vscode/
+.idea/
+*.userprefs
+*.suo
+
+# User-specific files
+*.rsuser
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET Core
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.exe.config
+*.json
+*.xml
+
+# macOS
+.DS_Store
+
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET Core
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.exe.config
+*.json
+*.xml
+
+# macOS
+.DS_Store
+
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET Core
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.exe.config
+*.json
+*.xml
+
+# macOS
+.DS_Store
+
+
+
