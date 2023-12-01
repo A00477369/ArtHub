@@ -41,11 +41,18 @@ namespace ArtHub.Controllers
                 return BadRequest("Invalid user data");
             }
 
-            User createdUser = new User(1, userDto.FirstName, userDto.LastName, userDto.Username,userDto.Email,userDto.Password,userDto.Mobile,userDto.ProfilePictureUrl,userDto.Gender,userDto.BirthDate,DateTime.Now,DateTime.Now);
-            
+            User createdUser = new User(1, userDto.FirstName, userDto.LastName, userDto.Username,userDto.Email,userDto.Password,userDto.Mobile,userDto.ProfilePictureUrl,userDto.Gender,userDto.BirthDate,DateTime.Now,DateTime.Now,userDto.City, userDto.Province,userDto.Country,userDto.PostalCode);
 
-            createdUser = _userService.CreateUser(createdUser);
-            return CreatedAtAction(nameof(Get), new { id = createdUser.Id }, createdUser);
+            if (createdUser.Validate().isValid)
+            {
+                createdUser = _userService.CreateUser(createdUser);
+                return Ok(createdUser);
+            }
+            else
+            {
+                return BadRequest(createdUser.Validate().errorMessage);
+            }
+            
         }
 
         [HttpPut]
