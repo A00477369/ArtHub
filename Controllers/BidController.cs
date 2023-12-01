@@ -32,9 +32,16 @@ namespace ArtHub.Controllers
 
             Bid bid = new Bid(1, dto.BidderId, dto.ArtworkId, dto.BidAmount, DateTime.Now, false);
 
-            bid = _bidService.CreateBid(bid);
-
-            return Ok(bid);
+            if (bid.Validate().isValid)
+            {
+                bid = _bidService.CreateBid(bid);
+                return Ok(bid);
+            }
+            else
+            {
+                return BadRequest(bid.Validate().errorMessage);
+            }
+            
         }
 
         [HttpPost("filter")]

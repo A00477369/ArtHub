@@ -30,8 +30,16 @@ namespace ArtHub.Controllers
 
             Category category = new Category(1, dto.Title, DateTime.Now, dto.CreatedBy);
 
-            category = _categoryService.CreateCategory(category);
-            return Ok(category);
+            if (category.Validate().isValid)
+            {
+                category = _categoryService.CreateCategory(category);
+                return Ok(category);
+            }
+            else
+            {
+                return BadRequest(category.Validate().errorMessage);
+            }
+
         }
 
         [HttpGet("{id:int}"),AllowAnonymous]
