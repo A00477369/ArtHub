@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Net.NetworkInformation;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace ArtHub.Models
 {
@@ -45,6 +47,34 @@ namespace ArtHub.Models
             CurrentHighestBid = currentHighestBid;
             Status = status;
         }
+
+        public (bool isValid, string errorMessage) Validate()
+        {
+
+            if (string.IsNullOrWhiteSpace(Title))
+            {
+                return (false, "Title is required.");
+            }
+
+            if (string.IsNullOrWhiteSpace(Description))
+            {
+                return (false, "Description is required.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(ImageUrl) && !Uri.IsWellFormedUriString(ImageUrl, UriKind.Absolute))
+            {
+                return (false, "Invalid URL format for ImageUrl.");
+            }
+
+            if (MinimumBid < 0)
+            {
+                return (false, "MinimumBid must be a non-negative number.");
+            }
+
+            return (true,"");
+        }
+
+
     }
 
     

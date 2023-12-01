@@ -5,16 +5,16 @@ namespace ArtHub.dto
 {
 	public class UpdateArtworkDto
 	{
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
-        public double MinimumBid { get; set; }
-        public bool Live { get; set; }
-        public int SellerId { get; set; }
-        public int CategoryId { get; set; }
-        public double CurrentHighestBid { get; set; }
-        public StatusType Status { get; set; }
+        public required int Id { get; set; }
+        public required string Title { get; set; }
+        public required string Description { get; set; }
+        public required string ImageUrl { get; set; }
+        public required double MinimumBid { get; set; }
+        public required bool Live { get; set; }
+        public required int SellerId { get; set; }
+        public required int CategoryId { get; set; }
+        public required double CurrentHighestBid { get; set; }
+        public required StatusType Status { get; set; }
     }
 }
 

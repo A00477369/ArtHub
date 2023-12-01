@@ -44,10 +44,17 @@ namespace ArtHub.Controllers
 
 
             Artwork createdArtwork = new Artwork(1,artworkDto.Title,artworkDto.Description,artworkDto.ImageUrl,artworkDto.MinimumBid,false,artworkDto.SellerId,artworkDto.CategoryId,DateTime.Now,DateTime.Now,0,StatusType.Draft);
-
+            if (createdArtwork.Validate().isValid)
+            {
+                createdArtwork = _artworkService.CreateArtwork(createdArtwork);
+                return Ok(createdArtwork);
+            }
+            else
+            {
+                return BadRequest(createdArtwork.Validate().errorMessage);
+            }
  
-            createdArtwork = _artworkService.CreateArtwork(createdArtwork);
-            return Ok(createdArtwork);
+          
         }
 
         [HttpPut]
