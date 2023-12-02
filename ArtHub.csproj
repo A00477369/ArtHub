@@ -13,12 +13,22 @@
     <None Remove="Services\ServicesImpl\" />
     <None Remove="dto\" />
     <None Remove="Filters\" />
+    <None Remove="poco\" />
+    <None Remove="Authorization\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Services\ServicesImpl\" />
     <Folder Include="dto\" />
     <Folder Include="Filters\" />
+    <Folder Include="poco\" />
+    <Folder Include="Authorization\" />
+  </ItemGroup>
+  <ItemGroup>
+  	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />

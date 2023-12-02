@@ -2,11 +2,12 @@
 using ArtHub.dto;
 using ArtHub.Models;
 using ArtHub.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArtHub.Controllers
 {
-
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CategoryController : ControllerBase
@@ -27,13 +28,27 @@ namespace ArtHub.Controllers
                 return BadRequest("Invalid category data");
             }
 
-            Category category = new Category(1, dto.Title, DateTime.Now, dto.CreatedBy);
+            Category category = new Category
+            {
+                Title = dto.Title,
+                CreatedOn = DateTime.Now,
+                CreatedBy = dto.CreatedBy
+            };
 
-            category = _categoryService.CreateCategory(category);
-            return Ok(category);
+
+            if (category.Validate().isValid)
+            {
+                category = _categoryService.CreateCategory(category);
+                return Ok(category);
+            }
+            else
+            {
+                return BadRequest(category.Validate().errorMessage);
+            }
+
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}"),AllowAnonymous]
         public ActionResult GetCategoryById(int id)
         {
             Category category = _categoryService.GetCategoryById(id);
@@ -46,7 +61,7 @@ namespace ArtHub.Controllers
             return Ok(category);
         }
 
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public ActionResult GetAllCategories()
         {
             List<Category> categories = _categoryService.GetAllCategories();

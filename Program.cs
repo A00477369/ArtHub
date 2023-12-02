@@ -1,8 +1,18 @@
-﻿using ArtHub.Services;
+using System.Text;
+using ArtHub.Services;
 using ArtHub.Services.ServicesImpl;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using ArtHub.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
+
 var builder = WebApplication.CreateBuilder(args);
+//Register db context
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options
+    => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -15,6 +25,19 @@ builder.Services.AddSingleton<BidService, BidServiceImpl>();
 builder.Services.AddSingleton<UserPreferenceService, UserPreferenceServiceImpl>();
 builder.Services.AddSingleton<TransactionService, TransactionServiceImpl>();
 
+// Authentication Configuration
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
 
 // Swagger Config
 builder.Services.AddSwaggerGen(c =>
@@ -38,6 +61,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

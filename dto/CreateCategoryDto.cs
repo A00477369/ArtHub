@@ -3,8 +3,8 @@ namespace ArtHub.dto
 {
 	public class CreateCategoryDto
 	{
-		public string Title { get; set; }
-        public string CreatedBy { get; set; }
+		public required string Title { get; set; }
+        public required string CreatedBy { get; set; }
     }
 }
 

@@ -2,10 +2,12 @@
 using ArtHub.dto;
 using ArtHub.Models;
 using ArtHub.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArtHub.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserPreferenceController : ControllerBase

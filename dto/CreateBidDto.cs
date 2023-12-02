@@ -3,9 +3,9 @@ namespace ArtHub.dto
 {
 	public class CreateBidDto
 	{
-        public int BidderId { get; set; }
-        public int ArtworkId { get; set; }
-        public double BidAmount { get; set; }
+        public required int BidderId { get; set; }
+        public required int ArtworkId { get; set; }
+        public required double BidAmount { get; set; }
 
     }
 }

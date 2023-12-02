@@ -15,6 +15,11 @@ namespace ArtHub.Services.ServicesImpl
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateBidStatusByArtworkIdAndBidAmount(int id, double currentHighestBid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

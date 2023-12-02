@@ -20,6 +20,19 @@ namespace ArtHub.Models
             CreatedOn = createdOn;
             Successful = successful;
         }
+
+
+        public (bool isValid, string errorMessage) Validate()
+        {
+
+            if (BidAmount < 0)
+            {
+                return (false, "BidAmount must be a non-negative number.");
+            }
+
+            return (true, "");
+        }
+
     }
 }
 
