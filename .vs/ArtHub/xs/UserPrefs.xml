@@ -1,3 +1,57 @@
 ﻿<Properties StartupConfiguration="{71D7C2C3-7EDB-479B-9EFE-781397FD8952}|https">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.ArtHub PreferredExecutionTarget="/Applications/Brave Browser.app" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Services/ServicesImpl/CategoryServiceImpl.cs">
+    <Files>
+      <File FileName="Models/ArtWork.cs" />
+      <File FileName="Models/Bid.cs" />
+      <File FileName="Models/User.cs" Line="22" Column="79" />
+      <File FileName="Controllers/UserController.cs" Line="1" Column="1" />
+      <File FileName="dto/CreateUserDto.cs" Line="1" Column="1" />
+      <File FileName="dto/UpdateCategoryDto.cs" />
+      <File FileName="dto/UpdateUserDto.cs" />
+      <File FileName="dto/CreateArtworkDto.cs" />
+      <File FileName="dto/UpdateArtworkDto.cs" />
+      <File FileName="Controllers/ArtworkController.cs" />
+      <File FileName="dto/CreateBidDto.cs" />
+      <File FileName="Controllers/BidController.cs" />
+      <File FileName="Models/Category.cs" Line="1" Column="1" />
+      <File FileName="dto/CreateCategoryDto.cs" />
+      <File FileName="Controllers/CategoryController.cs" Line="1" Column="1" />
+      <File FileName="Models/UserPreference.cs" />
+      <File FileName="Models/Transaction.cs" Line="17" Column="1" />
+      <File FileName="Program.cs" Line="5" Column="1" />
+      <File FileName="Authorization/AuthController.cs" Line="119" Column="1" />
+      <File FileName="dto/UserLoginDto.cs" />
+      <File FileName="appsettings.json" />
+      <File FileName="poco/LoggedInUser.cs" Line="37" Column="44" />
+      <File FileName="Authorization/AuthorizationMethods.cs" Line="30" Column="59" />
+      <File FileName="Models/AppDbContext.cs" Line="30" Column="1" />
+      <File FileName="Services/Views/Home/Index.cshtml" Line="10" Column="1" />
+      <File FileName="Services/Views/Home/Privacy.cshtml" Line="1" Column="1" />
+      <File FileName="Services/Views/_ViewImports.cshtml" Line="1" Column="1" />
+      <File FileName="Services/Views/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="Services/ServicesImpl/CategoryServiceImpl.cs" Line="29" Column="33" />
+      <File FileName="Services/ServicesImpl/ArtworkServiceImpl.cs" Line="15" Column="9" />
+      <File FileName="Services/ServicesImpl/BidServiceImpl.cs" Line="1" Column="1" />
+      <File FileName="Filters/ArtworkFilter.cs" Line="17" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ArtHub" selected="True">
+            <Node name="ArtHub" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
