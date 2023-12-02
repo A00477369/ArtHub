@@ -1,36 +1,55 @@
 ﻿<Properties StartupConfiguration="{CD844294-7CBF-4012-B1AF-3A44F53EE456}|https">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.ItemProperties.ArtHub PreferredExecutionTarget="/Applications/Brave Browser.app" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Program.cs" Line="32" Column="8" />
-      <File FileName="Controllers/AuthController.cs" Line="121" Column="25" />
-      <File FileName="Models/User.cs" />
-      <File FileName="dto/UserLoginDto.cs" />
-      <File FileName="poco/RefreshToken.cs" />
-      <File FileName="poco/LoggedInUser.cs" Line="6" Column="18" />
-      <File FileName="appsettings.json" />
-      <File FileName="Services/ArtworkService.cs" />
-      <File FileName=".gitignore" Line="7" Column="1" />
-      <File FileName="Controllers/ArtworkController.cs" Line="14" Column="16" />
+      <File FileName="Models/ArtWork.cs" Line="54" Column="13" />
+      <File FileName="Models/Bid.cs" Line="36" Column="6" />
+      <File FileName="Models/User.cs" Line="53" Column="17" />
+      <File FileName="Controllers/UserController.cs" Line="35" Column="1" />
+      <File FileName="dto/CreateUserDto.cs" Line="22" Column="1" />
+      <File FileName="dto/UpdateCategoryDto.cs" Line="7" Column="25" />
+      <File FileName="dto/UpdateUserDto.cs" Line="8" Column="24" />
+      <File FileName="dto/CreateArtworkDto.cs" Line="15" Column="25" />
+      <File FileName="dto/UpdateArtworkDto.cs" Line="17" Column="25" />
+      <File FileName="Controllers/ArtworkController.cs" Line="54" Column="75" />
+      <File FileName="dto/CreateBidDto.cs" Line="8" Column="25" />
+      <File FileName="Controllers/BidController.cs" Line="42" Column="64" />
+      <File FileName="Models/Category.cs" Line="28" Column="14" />
+      <File FileName="dto/CreateCategoryDto.cs" Line="7" Column="25" />
+      <File FileName="Controllers/CategoryController.cs" Line="40" Column="69" />
+      <File FileName="Models/UserPreference.cs" Line="1" Column="1" />
+      <File FileName="Models/Transaction.cs" Line="17" Column="1" />
+      <File FileName="Program.cs" Line="2" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ArtHub">
             <Node name="ArtHub">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" selected="True" />
+              </Node>
               <Node name="Controllers" expanded="True" />
+              <Node name="dto" expanded="True" />
+              <Node name="Filters" expanded="True" />
+              <Node name="Models" expanded="True" />
               <Node name="poco" expanded="True" />
-              <Node name="Program.cs" selected="True" />
+              <Node name="Services" expanded="True">
+                <Node name="ServicesImpl" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ArtHub PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MultiItemStartupConfigurations />
 </Properties>

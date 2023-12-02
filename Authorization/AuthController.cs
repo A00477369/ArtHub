@@ -20,20 +20,24 @@ namespace ArtHub.Authorization
     {
         private readonly IConfiguration _configuration;
         private readonly UserService _userService;
-        //public static User user = new User(
-        //            id: 1,
-        //            firstName: "John",
-        //            lastName: "Doe",
-        //            username: "john_doe",
-        //            email: "john.doe@example.com",
-        //            password: "securePassword123",
-        //            mobile: "123-456-7890",
-        //            profilePictureUrl: "profile.jpg",
-        //            gender: "Male",
-        //            birthDate: "1990-01-01",
-        //            createdOn: DateTime.Now,
-        //            lastUpdatedOn: DateTime.Now
-        //            );
+        public static User user = new User(
+                    id: 1,
+                    firstName: "John",
+                    lastName: "Doe",
+                    username: "john_doe",
+                    email: "john.doe@example.com",
+                    password: "securePassword123",
+                    mobile: "1234567890",
+                    profilePictureUrl: "profile.jpg",
+                    gender: "Male",
+                    birthDate: "1990-01-01",
+                    createdOn: DateTime.Now,
+                    lastUpdatedOn: DateTime.Now,
+                    city: "New York",
+                    province: "NY",
+                    country: "USA",
+                    postalCode: "10001"
+                    );
 
         //    public static LoggedInUser user = new LoggedInUser(user1);
 
@@ -48,7 +52,7 @@ namespace ArtHub.Authorization
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserLoginDto request)
         {
-            User user = _userService.FindUserByIdentity(request.Identity);
+            //User user = _userService.FindUserByIdentity(request.Identity);
             if(user == null)
             {
                 return NotFound("User Not Found");
