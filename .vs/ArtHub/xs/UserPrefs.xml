@@ -1,52 +1,23 @@
-﻿<Properties StartupConfiguration="{CD844294-7CBF-4012-B1AF-3A44F53EE456}|https">
-  <MultiItemStartupConfigurations />
+﻿<Properties StartupConfiguration="{0D43E2D3-518B-4613-A258-5811BBD0FE6D}|https">
   <MonoDevelop.Ide.ItemProperties.ArtHub PreferredExecutionTarget="/Applications/Brave Browser.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Filters/ArtworkFilter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Models/ArtWork.cs" />
-      <File FileName="Models/Bid.cs" />
-      <File FileName="Models/User.cs" />
-      <File FileName="Controllers/UserController.cs" />
-      <File FileName="dto/CreateUserDto.cs" />
-      <File FileName="dto/UpdateCategoryDto.cs" />
-      <File FileName="dto/UpdateUserDto.cs" />
-      <File FileName="dto/CreateArtworkDto.cs" />
-      <File FileName="dto/UpdateArtworkDto.cs" />
-      <File FileName="Controllers/ArtworkController.cs" Line="1" Column="1" />
-      <File FileName="dto/CreateBidDto.cs" />
-      <File FileName="Controllers/BidController.cs" />
-      <File FileName="Models/Category.cs" />
-      <File FileName="dto/CreateCategoryDto.cs" />
-      <File FileName="Controllers/CategoryController.cs" />
-      <File FileName="Models/UserPreference.cs" />
-      <File FileName="Models/Transaction.cs" />
-      <File FileName="Program.cs" />
-      <File FileName="appsettings.json" />
-      <File FileName="Services/ServicesImpl/CategoryServiceImpl.cs" Line="53" Column="2" />
-      <File FileName="Services/ServicesImpl/ArtworkServiceImpl.cs" />
-      <File FileName="Services/ServicesImpl/BidServiceImpl.cs" />
-      <File FileName="Filters/ArtworkFilter.cs" Line="27" Column="1" />
-      <File FileName="Authorization/AuthController.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="5" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ArtHub">
-            <Node name="ArtHub">
-              <Node name="Authorization" expanded="True" />
-              <Node name="Controllers" expanded="True" />
-              <Node name="Filters">
-                <Node name="ArtworkFilter.cs" selected="True" />
-              </Node>
-            </Node>
+            <Node name="ArtHub" selected="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MultiItemStartupConfigurations />
 </Properties>

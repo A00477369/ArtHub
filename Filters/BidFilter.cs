@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.NetworkInformation;
+using ArtHub.Models;
 
 namespace ArtHub.Filters
 {
@@ -8,29 +9,28 @@ namespace ArtHub.Filters
         public int? BidderId { get; set; }
         public int? ArtworkId { get; set; }
         public string? Successful { get; set; }
-        public String toQuery()
+        public IQueryable<Bid> ApplyFilter(IQueryable<Bid> query)
         {
-            string query = "SELECT * FROM Bid WHERE 1=1";
 
             if (BidderId != null)
             {
-                query += " AND BidderId = " + BidderId;
+                query = query.Where(a => a.BidderId == BidderId);
+
             }
 
             if (ArtworkId != null)
             {
-                query += " AND ArtworkId = " + ArtworkId;
+                query = query.Where(a => a.ArtworkId == ArtworkId);
             }
 
             if (Successful != null)
             {
-                query += " AND Successfull = '" + Successful + "'";
+                query = query.Where(a => a.Successful == bool.Parse(Successful));
             }
-
-            query += ";";
 
             return query;
         }
+
     }
 }
 

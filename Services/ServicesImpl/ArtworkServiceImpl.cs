@@ -7,12 +7,11 @@ namespace ArtHub.Services.ServicesImpl
     public class ArtworkServiceImpl : ArtworkService
     {
         private readonly IServiceScopeFactory _scopeFactory;
-        private readonly BidService _bidService;
 
-        public ArtworkServiceImpl(IServiceScopeFactory scopeFactory, BidService bidService)
+        public ArtworkServiceImpl(IServiceScopeFactory scopeFactory)
         {
             _scopeFactory = scopeFactory;
-            _bidService = bidService;
+        
         }
 
         public Artwork CreateArtwork(Artwork createdArtwork)
@@ -100,7 +99,6 @@ namespace ArtHub.Services.ServicesImpl
                 {
                     selectedArtwork.Live = false;
                     selectedArtwork.Status = StatusType.Sold;
-                    _bidService.UpdateBidStatusByArtworkIdAndBidAmount(selectedArtwork.Id, selectedArtwork.CurrentHighestBid);
 
                 }
 

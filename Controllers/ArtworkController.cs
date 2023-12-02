@@ -15,10 +15,12 @@ namespace ArtHub.Controllers
     public class ArtworkController : ControllerBase
     {
         private readonly ArtworkService _artworkService;
+        private readonly BidService _bidService;
 
-        public ArtworkController(ArtworkService artworkService)
+        public ArtworkController(ArtworkService artworkService, BidService bidService)
         {
             _artworkService = artworkService;
+            _bidService = bidService;
         }
 
         [HttpGet("{id:int}"),AllowAnonymous]
@@ -105,6 +107,9 @@ namespace ArtHub.Controllers
         public ActionResult StopAuction(int id)
         {
             Artwork artwork = _artworkService.StopAuction(id);
+
+            _bidService.UpdateBidStatusByArtworkIdAndBidAmount(id, artwork.CurrentHighestBid);
+
             return Ok(artwork);
         }
 
