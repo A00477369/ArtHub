@@ -26,6 +26,7 @@ namespace ArtHub.Models
         public DbSet<Category> Category { get; set; } 
         public DbSet<Artwork> Artwork { get; set; }
         public DbSet<Bid> Bid { get; set; }
+        public DbSet<UserPreference> UserPreference { get; set; }
 
     }
 }

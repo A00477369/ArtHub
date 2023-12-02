@@ -1,23 +1,52 @@
 ﻿using System;
+using System.Security.Cryptography;
 using ArtHub.Models;
 
 namespace ArtHub.Services.ServicesImpl
 {
 	public class UserPreferenceServiceImpl : UserPreferenceService
 	{
-		public UserPreference CreateUserPreference(UserPreference createdUserPreference)
+        private readonly IServiceScopeFactory _scopeFactory;
+
+        public UserPreferenceServiceImpl(IServiceScopeFactory scopeFactory, ArtworkService artworkService)
         {
-            throw new NotImplementedException();
+            _scopeFactory = scopeFactory;
+        }
+        public UserPreference CreateUserPreference(UserPreference createdUserPreference)
+        {
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                createdUserPreference = context.UserPreference.Add(createdUserPreference).Entity;
+
+                return createdUserPreference;
+            }
+                 
         }
 
         public UserPreference GetUserPreferenceById(int id)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                UserPreference userPreference = context.UserPreference.Find(id);
+
+                return userPreference;
+
+            }
         }
 
         public List<UserPreference> GetUserPreferencesByUserId(int id)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                var userPreferences = context.UserPreference.Where(up => up.UserId == id).ToList();
+
+                return userPreferences;
+
+            }
         }
     }
 }
