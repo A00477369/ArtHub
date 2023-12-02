@@ -25,7 +25,18 @@ namespace ArtHub.Models
             CreatedOn = createdOn;
             CreatedBy = createdBy;
         }
-        
+
+        public (bool isValid, string errorMessage) Validate()
+        {
+
+            if (string.IsNullOrWhiteSpace(Title))
+            {
+                return (false, "Title is required.");
+            }
+
+            return (true, "");
+        }
+
 
     }
 }

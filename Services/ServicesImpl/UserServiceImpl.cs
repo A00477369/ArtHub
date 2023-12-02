@@ -32,6 +32,11 @@ namespace ArtHub.Services.ServicesImpl
             throw new NotImplementedException();
         }
 
+        public User FindUserByIdentity(string identity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<User> GetAllUsers()
         {
             throw new NotImplementedException();
