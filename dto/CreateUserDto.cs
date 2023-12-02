@@ -11,11 +11,12 @@ namespace ArtHub.dto
         public required string Mobile { get; set; }
         public required string ProfilePictureUrl { get; set; }
         public required string Gender { get; set; }
-        public required string BirthDate { get; set; }
+        public required DateTime BirthDate { get; set; }
         public required string City { get; set; }
         public required string Province { get; set; }
         public required string Country { get; set; }
         public required string PostalCode { get; set; }
-    }
+        }
+
 }
 

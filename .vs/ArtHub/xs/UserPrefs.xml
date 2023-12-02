@@ -1,48 +1,41 @@
-﻿<Properties StartupConfiguration="{CD844294-7CBF-4012-B1AF-3A44F53EE456}|https">
+﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.ArtHub PreferredExecutionTarget="/Applications/Brave Browser.app" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Transaction.cs">
     <Files>
-      <File FileName="Models/ArtWork.cs" Line="54" Column="13" />
-      <File FileName="Models/Bid.cs" Line="36" Column="6" />
-      <File FileName="Models/User.cs" Line="53" Column="17" />
-      <File FileName="Controllers/UserController.cs" Line="35" Column="1" />
-      <File FileName="dto/CreateUserDto.cs" Line="22" Column="1" />
-      <File FileName="dto/UpdateCategoryDto.cs" Line="7" Column="25" />
-      <File FileName="dto/UpdateUserDto.cs" Line="8" Column="24" />
-      <File FileName="dto/CreateArtworkDto.cs" Line="15" Column="25" />
-      <File FileName="dto/UpdateArtworkDto.cs" Line="17" Column="25" />
-      <File FileName="Controllers/ArtworkController.cs" Line="54" Column="75" />
-      <File FileName="dto/CreateBidDto.cs" Line="8" Column="25" />
-      <File FileName="Controllers/BidController.cs" Line="42" Column="64" />
-      <File FileName="Models/Category.cs" Line="28" Column="14" />
-      <File FileName="dto/CreateCategoryDto.cs" Line="7" Column="25" />
-      <File FileName="Controllers/CategoryController.cs" Line="40" Column="69" />
-      <File FileName="Models/UserPreference.cs" Line="1" Column="1" />
+      <File FileName="Models/ArtWork.cs" />
+      <File FileName="Models/Bid.cs" />
+      <File FileName="Models/User.cs" />
+      <File FileName="Controllers/UserController.cs" />
+      <File FileName="dto/CreateUserDto.cs" />
+      <File FileName="dto/UpdateCategoryDto.cs" />
+      <File FileName="dto/UpdateUserDto.cs" />
+      <File FileName="dto/CreateArtworkDto.cs" />
+      <File FileName="dto/UpdateArtworkDto.cs" />
+      <File FileName="Controllers/ArtworkController.cs" />
+      <File FileName="dto/CreateBidDto.cs" />
+      <File FileName="Controllers/BidController.cs" />
+      <File FileName="Models/Category.cs" />
+      <File FileName="dto/CreateCategoryDto.cs" />
+      <File FileName="Controllers/CategoryController.cs" />
+      <File FileName="Models/UserPreference.cs" />
       <File FileName="Models/Transaction.cs" Line="17" Column="1" />
-      <File FileName="Program.cs" Line="2" Column="1" />
+      <File FileName="Program.cs" />
+      <File FileName=".gitignore" />
+      <File FileName="Authorization/AuthController.cs" />
+      <File FileName="dto/UserLoginDto.cs" />
+      <File FileName="appsettings.json" />
+      <File FileName="poco/LoggedInUser.cs" />
+      <File FileName="Authorization/AuthorizationMethods.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ArtHub">
-            <Node name="ArtHub">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" selected="True" />
-              </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="dto" expanded="True" />
-              <Node name="Filters" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="poco" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="ServicesImpl" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="ArtHub" selected="True" />
           </Node>
         </State>
       </Pad>

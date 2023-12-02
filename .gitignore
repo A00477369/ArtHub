@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿# .NET
 project.lock.json
 project.fragment.lock.json
@@ -30,11 +31,17 @@ obj/
 
 
 # User-specific files
+=======
+# Ignore Visual Studio files and directories
+.vs/
+*.vsix
+>>>>>>> c15428956b56b18b20d72aa7b7f90d2fca660625
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 
+<<<<<<< HEAD
 # .NET Core
 *.dll
 *.exe
@@ -68,3 +75,7 @@ obj/
 
 
 
+=======
+# Ignore file patterns causing warnings or errors
+.vs/ArtHub/FileContentIndex/*.vsidx
+>>>>>>> c15428956b56b18b20d72aa7b7f90d2fca660625

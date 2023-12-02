@@ -16,7 +16,7 @@ namespace ArtHub.Models
         public string Mobile { get; set; }
         public string ProfilePictureUrl { get; set; }
         public string Gender { get; set; }
-        public string BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastUpdatedOn { get; set; }
         public string City { get; set; }
@@ -26,7 +26,7 @@ namespace ArtHub.Models
 
 
         public User(int id, string firstName, string lastName, string username, string email, string password,
-                string mobile, string profilePictureUrl, string gender, string birthDate, DateTime createdOn, DateTime lastUpdatedOn,
+                string mobile, string profilePictureUrl, string gender, DateTime birthDate, DateTime createdOn, DateTime lastUpdatedOn,
             string city, string province, string country, string postalCode)
         {
             Id = id;

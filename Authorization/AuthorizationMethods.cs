@@ -27,7 +27,7 @@ namespace ArtHub.Authorization
                 Email = emailClaim,
                 Mobile = mobileClaim,
                 Gender = genderClaim,
-                BirthDate = birthDateClaim,
+                BirthDate = DateTime.Parse(birthDateClaim),
             };
 
             return loggedInUser;

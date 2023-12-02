@@ -16,7 +16,7 @@ namespace ArtHub.poco
         public string Mobile { get; set; }
         public string ProfilePictureUrl { get; set; }
         public string Gender { get; set; }
-        public string BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastUpdatedOn { get; set; }
         public string AccessToken { get; set; }

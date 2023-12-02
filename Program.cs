@@ -1,10 +1,18 @@
-﻿using System.Text;
+using System.Text;
 using ArtHub.Services;
 using ArtHub.Services.ServicesImpl;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using ArtHub.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+
+
 var builder = WebApplication.CreateBuilder(args);
+//Register db context
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options
+    => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
