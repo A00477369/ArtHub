@@ -86,6 +86,7 @@ namespace ArtHub.Controllers
 
 
         [HttpPost("filter"), AllowAnonymous]
+
         public ActionResult ArtworkFilter([FromBody] ArtworkFilter filter)
         {
             List<Artwork> artworks = _artworkService.filter(filter); 

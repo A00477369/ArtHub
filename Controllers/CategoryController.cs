@@ -48,7 +48,7 @@ namespace ArtHub.Controllers
 
         }
 
-        [HttpGet("{id:int}"),AllowAnonymous]
+        [HttpGet("{id:int}")]
         public ActionResult GetCategoryById(int id)
         {
             Category category = _categoryService.GetCategoryById(id);

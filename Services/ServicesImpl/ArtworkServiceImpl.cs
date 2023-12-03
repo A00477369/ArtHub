@@ -1,8 +1,6 @@
-﻿using System;
-using ArtHub.dto;
+﻿using ArtHub.dto;
 using ArtHub.Filters;
 using ArtHub.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace ArtHub.Services.ServicesImpl
 {
@@ -13,10 +11,21 @@ namespace ArtHub.Services.ServicesImpl
         public ArtworkServiceImpl(IServiceScopeFactory scopeFactory)
         {
             _scopeFactory = scopeFactory;
+
         }
+
         public Artwork CreateArtwork(Artwork createdArtwork)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                createdArtwork = context.Artwork.Add(createdArtwork).Entity;
+
+                context.SaveChanges();
+
+                return createdArtwork;
+            }
         }
 
         public List<Artwork> filter(ArtworkFilter filter)
@@ -24,35 +33,102 @@ namespace ArtHub.Services.ServicesImpl
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                string query = filter.ToQuery();
-                return context.Artwork.FromSqlRaw(query).ToList();
+
+                IQueryable<Artwork> query = context.Artwork;
+
+                query = filter.ApplyFilter(query);
+
+                return query.ToList();
             }
+
         }
 
         public List<Artwork> GetAllArtworks()
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                List<Artwork> artworks = context.Artwork.ToList();
+
+                return artworks;
+
+            }
         }
 
         public Artwork GetArtworkById(int id)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                Artwork artwork = context.Artwork.Find(id);
+
+                return artwork;
+
+            }
         }
 
         public Artwork StartAuction(int id)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                Artwork selectedArtwork = GetArtworkById(id);
+                if (!selectedArtwork.Live && selectedArtwork.Status == StatusType.Draft)
+                {
+                    selectedArtwork.Live = true;
+                    selectedArtwork.Status = StatusType.Active;
+                    selectedArtwork.LiveStartTime = DateTime.Now;
+                    context.SaveChanges();
+                }
+                return selectedArtwork;
+            }
+
+
         }
 
         public Artwork StopAuction(int id)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                Artwork selectedArtwork = GetArtworkById(id);
+                if (selectedArtwork.Live)
+                {
+                    selectedArtwork.Live = false;
+                    selectedArtwork.Status = StatusType.Sold;
+
+                }
+
+                context.SaveChanges();
+                return selectedArtwork;
+
+            }
+
+
+
         }
 
         public Artwork UpdateArtwork(UpdateArtworkDto artworkDto, Artwork existingArtwork)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                existingArtwork.Title = artworkDto.Title;
+                existingArtwork.Description = artworkDto.Description;
+                existingArtwork.ImageUrl = artworkDto.ImageUrl;
+                existingArtwork.MinimumBid = artworkDto.MinimumBid;
+                existingArtwork.CategoryId = artworkDto.CategoryId;
+                existingArtwork.LastUpdatedOn = DateTime.Now;
+
+                context.SaveChanges();
+
+            }
+
+            return existingArtwork;
         }
     }
 }
-

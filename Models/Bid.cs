@@ -1,5 +1,4 @@
-﻿using System;
-namespace ArtHub.Models
+﻿namespace ArtHub.Models
 {
 	public class Bid
 	{
@@ -8,12 +7,12 @@ namespace ArtHub.Models
         public int ArtworkId { get; set; }
         public double BidAmount { get; set; }
         public DateTime CreatedOn { get; set; }
-        public bool Successful { get; set; }
+        public string  Successful { get; set; }
 
         
-        public Bid(int id, int bidderId, int artworkId, double bidAmount, DateTime createdOn, bool successful)
+        public Bid( int bidderId, int artworkId, double bidAmount, DateTime createdOn, string successful)
         {
-            Id = id;
+        
             BidderId = bidderId;
             ArtworkId = artworkId;
             BidAmount = bidAmount;

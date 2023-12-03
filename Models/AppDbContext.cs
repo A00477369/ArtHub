@@ -10,7 +10,7 @@ namespace ArtHub.Models
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-    
+
 
         public static AppDbContext Instance(DbContextOptions<AppDbContext> options)
         {
@@ -24,8 +24,9 @@ namespace ArtHub.Models
 
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Category { get; set; }
-
         public DbSet<Artwork> Artwork { get; set; }
+        public DbSet<Bid> Bid { get; set; }
+        public DbSet<UserPreference> UserPreference { get; set; }
 
     }
 }

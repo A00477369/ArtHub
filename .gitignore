@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿# .NET
 project.lock.json
 project.fragment.lock.json
@@ -29,53 +28,13 @@ obj/
 # macOS
 .DS_Store
 
-
-# User-specific files
-=======
 # Ignore Visual Studio files and directories
 .vs/
 *.vsix
->>>>>>> c15428956b56b18b20d72aa7b7f90d2fca660625
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 
-<<<<<<< HEAD
-# .NET Core
-*.dll
-*.exe
-*.pdb
-*.dll.config
-*.exe.config
-*.json
-*.xml
-
-# macOS
-.DS_Store
-
-
-# User-specific files
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# .NET Core
-*.dll
-*.exe
-*.pdb
-*.dll.config
-*.exe.config
-*.json
-*.xml
-
-# macOS
-.DS_Store
-
-
-
-=======
 # Ignore file patterns causing warnings or errors
 .vs/ArtHub/FileContentIndex/*.vsidx
->>>>>>> c15428956b56b18b20d72aa7b7f90d2fca660625

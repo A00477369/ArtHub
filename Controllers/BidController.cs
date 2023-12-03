@@ -30,7 +30,7 @@ namespace ArtHub.Controllers
                 return BadRequest("Bad Bid Data");
             }
 
-            Bid bid = new Bid(1, dto.BidderId, dto.ArtworkId, dto.BidAmount, DateTime.Now, false);
+            Bid bid = new Bid(dto.BidderId, dto.ArtworkId, dto.BidAmount, DateTime.Now, "false");
 
             if (bid.Validate().isValid)
             {

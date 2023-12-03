@@ -1,47 +1,34 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using ArtHub.Models;
 
 namespace ArtHub.Filters
 {
-	public class ArtworkFilter
-	{
-        private int ? SellerId { get; set; }
-        private List<int>? CategoryIds { get; set; }
-        private StatusType? Status { get; set; }
+    public class ArtworkFilter
+    {
+        public int? SellerId { get; set; }
+        public List<int>? CategoryIds { get; set; }
+        public StatusType? Status { get; set; }
 
-        public string ToQuery()
+        public IQueryable<Artwork> ApplyFilter(IQueryable<Artwork> query)
         {
-            string query = "SELECT * FROM Artwork WHERE 1=1";
-
             if (SellerId != null)
             {
-                Console.WriteLine("The seller id is "+SellerId);
-                query += " AND SellerId = " + SellerId.ToString();
-              
+                query = query.Where(a => a.SellerId == SellerId);
             }
 
-            if (CategoryIds != null && CategoryIds.Count > 0)
+            if (CategoryIds != null && CategoryIds.Any())
             {
-                string categoryIdsString = string.Join(",", CategoryIds);
-                query += " AND CategoryId IN (" + categoryIdsString + ")";
+                query = query.Where(a => CategoryIds.Contains(a.CategoryId));
             }
 
             if (Status != null)
             {
-                if (Status is StatusType statusType)
-                {
-                    query += $" AND Status = '{statusType}'";
-                }
+                query = query.Where(a => a.Status == Status);
             }
-
-            query += ";";
-            Console.WriteLine("The query is " + query);
 
             return query;
         }
-
     }
-
-
 }
-

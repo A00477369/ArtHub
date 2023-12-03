@@ -25,11 +25,10 @@ namespace ArtHub.Models
         public string PostalCode { get; set; }
 
 
-        public User(int id, string firstName, string lastName, string username, string email, string password,
+        public User( string firstName, string lastName, string username, string email, string password,
                 string mobile, string profilePictureUrl, string gender, DateTime birthDate, DateTime createdOn, DateTime lastUpdatedOn,
             string city, string province, string country, string postalCode)
         {
-            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Username = username;

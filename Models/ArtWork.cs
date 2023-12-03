@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using System.Net.NetworkInformation;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArtHub.Models
 {
@@ -17,7 +18,8 @@ namespace ArtHub.Models
 
     public class Artwork
     {
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key] public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
