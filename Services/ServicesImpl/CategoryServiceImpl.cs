@@ -1,6 +1,9 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ArtHub.dto;
 using ArtHub.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ArtHub.Services.ServicesImpl
 {
@@ -40,15 +43,32 @@ namespace ArtHub.Services.ServicesImpl
                 return categoryList;
             }
         }
+
         public Category GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                Category category = context.Category.Find(id);
+                return category;
+            }
         }
 
         public Category UpdateCategory(UpdateCategoryDto dto, Category existingCategory)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                if (existingCategory != null)
+                {
+                    existingCategory.Title = dto.Title;
+                    context.SaveChanges();
+                }
+
+                return existingCategory;
+            }
         }
     }
 }
-    

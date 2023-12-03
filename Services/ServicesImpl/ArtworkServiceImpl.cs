@@ -2,11 +2,18 @@
 using ArtHub.dto;
 using ArtHub.Filters;
 using ArtHub.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ArtHub.Services.ServicesImpl
 {
     public class ArtworkServiceImpl : ArtworkService
     {
+        private readonly IServiceScopeFactory _scopeFactory;
+
+        public ArtworkServiceImpl(IServiceScopeFactory scopeFactory)
+        {
+            _scopeFactory = scopeFactory;
+        }
         public Artwork CreateArtwork(Artwork createdArtwork)
         {
             throw new NotImplementedException();
@@ -14,7 +21,12 @@ namespace ArtHub.Services.ServicesImpl
 
         public List<Artwork> filter(ArtworkFilter filter)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                string query = filter.ToQuery();
+                return context.Artwork.FromSqlRaw(query).ToList();
+            }
         }
 
         public List<Artwork> GetAllArtworks()

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using ArtHub.dto;
 using ArtHub.Models;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ArtHub.Services.ServicesImpl
 {
@@ -29,25 +26,45 @@ namespace ArtHub.Services.ServicesImpl
 
         public void DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                var userToDelete = context.Users.Find(id);
+
+                if (userToDelete != null)
+                {
+                    context.Users.Remove(userToDelete);
+                    context.SaveChanges();
+                }
+            }
         }
 
         public User FindUserByIdentity(string identity)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                return context.Users.FirstOrDefault(u => u.Username == identity || u.Email == identity);
+            }
         }
 
         public List<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                return context.Users.ToList();
+            }
         }
 
         public User GetUserById(int id)
         {
-            throw new NotImplementedException();
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                return context.Users.Find(id);
+            }
         }
-
-        // ... (other methods similarly modified)
 
         public User UpdateUser(UpdateUserDto userDto, User oldUser)
         {

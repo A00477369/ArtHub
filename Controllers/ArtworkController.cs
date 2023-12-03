@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using ArtHub.dto;
 using ArtHub.Filters;
 using ArtHub.Models;
@@ -86,8 +85,8 @@ namespace ArtHub.Controllers
         }
 
 
-        [HttpPost("filter"),AllowAnonymous]
-        public ActionResult ArtworkFilter(ArtworkFilter filter)
+        [HttpPost("filter"), AllowAnonymous]
+        public ActionResult ArtworkFilter([FromBody] ArtworkFilter filter)
         {
             List<Artwork> artworks = _artworkService.filter(filter); 
 

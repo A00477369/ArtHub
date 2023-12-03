@@ -1,9 +1,9 @@
-﻿using System;
-using ArtHub.dto;
+﻿using ArtHub.dto;
 using ArtHub.Models;
 using ArtHub.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 namespace ArtHub.Controllers
 {
     [Authorize]
@@ -11,13 +11,11 @@ namespace ArtHub.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-
         private readonly UserService _userService;
 
         public UserController(UserService userService)
         {
             _userService = userService;
-
         }
 
         [HttpGet("{id:int}")]
@@ -41,7 +39,7 @@ namespace ArtHub.Controllers
                 return BadRequest("Invalid user data");
             }
 
-            User createdUser = new User(1, userDto.FirstName, userDto.LastName, userDto.Username,userDto.Email,userDto.Password,userDto.Mobile,userDto.ProfilePictureUrl,userDto.Gender,userDto.BirthDate,DateTime.Now,DateTime.Now,userDto.City, userDto.Province,userDto.Country,userDto.PostalCode);
+            User createdUser = new User(1, userDto.FirstName, userDto.LastName, userDto.Username, userDto.Email, userDto.Password, userDto.Mobile, userDto.ProfilePictureUrl, userDto.Gender, userDto.BirthDate, DateTime.Now, DateTime.Now, userDto.City, userDto.Province, userDto.Country, userDto.PostalCode);
 
             if (createdUser.Validate().isValid)
             {
@@ -52,7 +50,6 @@ namespace ArtHub.Controllers
             {
                 return BadRequest(createdUser.Validate().errorMessage);
             }
-            
         }
 
         [HttpPut]
@@ -79,14 +76,25 @@ namespace ArtHub.Controllers
             return Ok(newUser);
         }
 
+        [HttpDelete("{id:int}")]
+        public ActionResult DeleteUser(int id)
+        {
+            try
+            {
+                _userService.DeleteUser(id);
+                return Ok("User deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error deleting user: {ex.Message}");
+            }
+        }
+
         [HttpGet]
         public ActionResult GetAll()
         {
-            Console.WriteLine("Inside the controller");
             List<User> users = _userService.GetAllUsers();
-
             return Ok(users);
         }
     }
 }
-
