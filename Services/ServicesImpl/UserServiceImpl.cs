@@ -64,4 +64,27 @@ namespace ArtHub.Services.ServicesImpl
                 return context.Users.Find(id);
             }
         }
+        public User UpdateUser(UpdateUserDto userDto, User oldUser)
+        {
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
+                if (oldUser != null)
+                {
+                    oldUser.FirstName = userDto.FirstName;
+                    oldUser.LastName = userDto.LastName;
+                    oldUser.Username = userDto.Username;
+                    oldUser.Email = userDto.Email;
+                    oldUser.Password = userDto.Password;
+                    oldUser.Mobile = userDto.Mobile;
+                    oldUser.ProfilePictureUrl = userDto.ProfilePictureUrl;
+                    oldUser.Gender = userDto.Gender;
+                    context.SaveChanges();
+                }
+
+                return oldUser;
+            }
+        }
+    }
+}
