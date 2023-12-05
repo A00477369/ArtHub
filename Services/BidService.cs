@@ -8,6 +8,7 @@ namespace ArtHub.Services
     {
         Bid CreateBid(Bid bid);
         List<Bid> filter(BidFilter filter);
+        Bid FindBidById(int id);
         void UpdateBidStatusByArtworkIdAndBidAmount(int id, double currentHighestBid);
     }
 }

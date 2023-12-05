@@ -27,6 +27,7 @@ namespace ArtHub.Models
         public DbSet<Artwork> Artwork { get; set; }
         public DbSet<Bid> Bid { get; set; }
         public DbSet<UserPreference> UserPreference { get; set; }
+        public DbSet<Transaction> Transaction { get; set; }
 
     }
 }

@@ -13,10 +13,14 @@ namespace ArtHub.Controllers
     public class TransactionController : ControllerBase
     {
         private readonly TransactionService _transactionService;
+        private readonly UserService _userService;
+        private readonly BidService _bidService;
 
-        public TransactionController(TransactionService transactionService)
+        public TransactionController(TransactionService transactionService, UserService userService, BidService bidService)
         {
             _transactionService = transactionService;
+            _userService = userService;
+            _bidService = bidService;
         }
 
         [HttpGet("{id:int}")]
@@ -40,10 +44,31 @@ namespace ArtHub.Controllers
                 return BadRequest("Invalid transaction data");
             }
 
-            Transaction createdTransaction = new Transaction(1,createTransactionDto.BidId);
+            if (createTransactionDto.SameAsUser)
+            {
+                Bid bid = _bidService.FindBidById(createTransactionDto.BidId);
+                User user = _userService.GetUserById(bid.BidderId);
 
-            createdTransaction = _transactionService.CreateTransaction(createdTransaction);
-            return Ok(createdTransaction);
+                createTransactionDto.CardHolderFirstName = user.FirstName;
+                createTransactionDto.CardHolderLastName = user.LastName;
+                createTransactionDto.City = user.City;
+                createTransactionDto.State = user.Province;
+                createTransactionDto.Country = user.Country;
+                createTransactionDto.PostalCode = user.PostalCode;
+            }
+
+            Transaction createdTransaction = new Transaction(createTransactionDto.BidId,createTransactionDto.CardHolderFirstName,createTransactionDto.CardHolderLastName,createTransactionDto.City,createTransactionDto.State,createTransactionDto.Country,createTransactionDto.PostalCode,createTransactionDto.CardType,createTransactionDto.CardNumber,createTransactionDto.ExpiryDate,createTransactionDto.CVV);
+
+            if (createdTransaction.Validate().isValid)
+            {
+                createdTransaction = _transactionService.CreateTransaction(createdTransaction);
+                return Ok(createdTransaction);
+            }
+            else
+            {
+                return BadRequest(createdTransaction.Validate().errorMessage);
+            }
+
         }
 
      

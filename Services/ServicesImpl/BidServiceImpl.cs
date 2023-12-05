@@ -50,6 +50,17 @@ namespace ArtHub.Services.ServicesImpl
             }
         }
 
+        public Bid FindBidById(int id)
+        {
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                Bid bid = context.Bid.Find(id);
+                return bid;
+
+            }
+        }
+
         public void UpdateBidStatusByArtworkIdAndBidAmount(int id, double currentHighestBid)
         {
             using (var scope = _scopeFactory.CreateScope())
