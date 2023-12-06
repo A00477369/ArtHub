@@ -12,14 +12,14 @@ namespace ArtHub.Models
         [Key] public int Id { get; set; }
         public string Title { get; set; }
         public DateTime CreatedOn { get; set; }
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
 
 
         public Category()
         {
         }
 
-        public Category( string title, DateTime createdOn, string createdBy)
+        public Category( string title, DateTime createdOn, int createdBy)
         {
             Title = title;
             CreatedOn = createdOn;

@@ -63,6 +63,11 @@ namespace ArtHub.Services.ServicesImpl
 
                 if (existingCategory != null)
                 {
+                    if (!context.Categories.Local.Contains(existingCategory))
+                    {
+                        context.Categories.Attach(existingCategory);
+                    }
+
                     existingCategory.Title = dto.Title;
                     context.SaveChanges();
                 }
