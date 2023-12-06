@@ -23,7 +23,7 @@ namespace ArtHub.Services.ServicesImpl
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
                 Console.WriteLine($"Before adding to DbContext - Id: {category.Id}, Title: {category.Title}, CreatedOn: {category.CreatedOn}, CreatedBy: {category.CreatedBy}");
-                context.Category.Add(category);
+                context.Categories.Add(category);
                 Console.WriteLine($"After adding to DbContext - Id: {category.Id}, Title: {category.Title}, CreatedOn: {category.CreatedOn}, CreatedBy: {category.CreatedBy}");
 
                 context.SaveChanges();
@@ -39,7 +39,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                List<Category> categoryList = context.Category.ToList();
+                List<Category> categoryList = context.Categories.ToList();
                 return categoryList;
             }
         }
@@ -50,7 +50,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                Category category = context.Category.Find(id);
+                Category category = context.Categories.Find(id);
                 return category;
             }
         }

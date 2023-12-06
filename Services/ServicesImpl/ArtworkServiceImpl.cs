@@ -20,7 +20,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                createdArtwork = context.Artwork.Add(createdArtwork).Entity;
+                createdArtwork = context.Artworks.Add(createdArtwork).Entity;
 
                 context.SaveChanges();
 
@@ -34,7 +34,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                IQueryable<Artwork> query = context.Artwork;
+                IQueryable<Artwork> query = context.Artworks;
 
                 query = filter.ApplyFilter(query);
 
@@ -49,7 +49,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                List<Artwork> artworks = context.Artwork.ToList();
+                List<Artwork> artworks = context.Artworks.ToList();
 
                 return artworks;
 
@@ -61,7 +61,7 @@ namespace ArtHub.Services.ServicesImpl
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                Artwork artwork = context.Artwork.Find(id);
+                Artwork artwork = context.Artworks.Find(id);
 
                 return artwork;
 

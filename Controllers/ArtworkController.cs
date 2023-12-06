@@ -5,6 +5,8 @@ using ArtHub.Models;
 using ArtHub.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+
 namespace ArtHub.Controllers
 {
 
@@ -121,13 +123,15 @@ namespace ArtHub.Controllers
                 _logger.LogInformation("Getting all artworks");
 
                 List<Artwork> artworks = _artworkService.GetAllArtworks();
+               Console.Write($"Retrieved {artworks.Count} artworks: {JsonConvert.SerializeObject(artworks)}");
+
                 _logger.LogInformation($"Retrieved {artworks.Count} artworks");
                 return Ok(artworks);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error getting all artworks: {ex.Message}");
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex);
             }
         }
 

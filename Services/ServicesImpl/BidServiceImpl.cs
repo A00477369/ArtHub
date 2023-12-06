@@ -27,7 +27,7 @@ namespace ArtHub.Services.ServicesImpl
                 if(selectedArtwork != null && selectedArtwork.Live && selectedArtwork.MinimumBid <= bid.BidAmount && selectedArtwork.CurrentHighestBid <= bid.BidAmount)
                 {
 
-                    bid = context.Bid.Add(bid).Entity;
+                    bid = context.Bids.Add(bid).Entity;
                     selectedArtwork.CurrentHighestBid = bid.BidAmount;
                     context.SaveChanges();
                 }
@@ -42,7 +42,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                IQueryable<Bid> query = context.Bid;
+                IQueryable<Bid> query = context.Bids;
 
                 query = filter.ApplyFilter(query);
 
@@ -55,7 +55,7 @@ namespace ArtHub.Services.ServicesImpl
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                Bid bid = context.Bid.Find(id);
+                Bid bid = context.Bids.Find(id);
                 return bid;
 
             }
@@ -67,7 +67,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                var selectedBid = context.Bid.FirstOrDefault(b => b.ArtworkId == id && b.BidAmount == currentHighestBid);
+                var selectedBid = context.Bids.FirstOrDefault(b => b.ArtworkId == id && b.BidAmount == currentHighestBid);
 
                 if (selectedBid != null)
                 {

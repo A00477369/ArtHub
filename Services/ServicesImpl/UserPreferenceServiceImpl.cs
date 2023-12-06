@@ -17,7 +17,7 @@ namespace ArtHub.Services.ServicesImpl
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                createdUserPreference = context.UserPreference.Add(createdUserPreference).Entity;
+                createdUserPreference = context.UserPreferences.Add(createdUserPreference).Entity;
 
                 return createdUserPreference;
             }
@@ -29,7 +29,7 @@ namespace ArtHub.Services.ServicesImpl
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                UserPreference userPreference = context.UserPreference.Find(id);
+                UserPreference userPreference = context.UserPreferences.Find(id);
 
                 return userPreference;
 
@@ -42,7 +42,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                var userPreferences = context.UserPreference.Where(up => up.UserId == id).ToList();
+                var userPreferences = context.UserPreferences.Where(up => up.UserId == id).ToList();
 
                 return userPreferences;
 

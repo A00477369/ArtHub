@@ -18,7 +18,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                createdTransaction = context.Transaction.Add(createdTransaction).Entity;
+                createdTransaction = context.Transactions.Add(createdTransaction).Entity;
 
                 context.SaveChanges();
 
@@ -31,7 +31,7 @@ namespace ArtHub.Services.ServicesImpl
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                Transaction transaction = context.Transaction.Find(id);
+                Transaction transaction = context.Transactions.Find(id);
                 return transaction;
 
             }

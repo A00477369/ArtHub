@@ -23,11 +23,11 @@ namespace ArtHub.Models
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Artwork> Artwork { get; set; }
-        public DbSet<Bid> Bid { get; set; }
-        public DbSet<UserPreference> UserPreference { get; set; }
-        public DbSet<Transaction> Transaction { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Artwork> Artworks { get; set; }
+        public DbSet<Bid> Bids { get; set; }
+        public DbSet<UserPreference> UserPreferences { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
     }
 }
