@@ -21,6 +21,11 @@ namespace ArtHub.Models
         public string ExpiryDate { get; set; }
         public string CVV { get; set; }
 
+        public Transaction()
+        {
+
+        }
+
         public Transaction(int bidId, string cardHolderFirstName, string cardHolderLastName, string city, string state, string country, string postalCode, string cardType, string cardNumber, string expiryDate, string cvv)
         {
             BidId = bidId;

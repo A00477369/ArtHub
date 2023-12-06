@@ -39,6 +39,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+// Add logging
+builder.Logging.AddConsole();
+
 // Swagger Config
 builder.Services.AddSwaggerGen(c =>
 {

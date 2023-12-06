@@ -13,44 +13,65 @@ namespace ArtHub.Controllers
     [Route("[controller]")]
     public class BidController : ControllerBase
     {
-
         private readonly BidService _bidService;
+        private readonly ILogger<BidController> _logger; 
 
-
-        public BidController(BidService bidService)
-		{
+        public BidController(BidService bidService, ILogger<BidController> logger) 
+        {
             _bidService = bidService;
-		}
+            _logger = logger;
+        }
 
         [HttpPost]
         public ActionResult CreateBid([FromBody] CreateBidDto dto)
         {
-            if(dto == null)
+            try
             {
-                return BadRequest("Bad Bid Data");
-            }
+                _logger.LogInformation("Creating bid");
 
-            Bid bid = new Bid(dto.BidderId, dto.ArtworkId, dto.BidAmount, DateTime.Now, "false");
+                if (dto == null)
+                {
+                    _logger.LogWarning("Invalid bid data received");
+                    return BadRequest("Bad Bid Data");
+                }
 
-            if (bid.Validate().isValid)
-            {
-                bid = _bidService.CreateBid(bid);
-                return Ok(bid);
+                Bid bid = new Bid(dto.BidderId, dto.ArtworkId, dto.BidAmount, DateTime.Now, "false");
+
+                if (bid.Validate().isValid)
+                {
+                    bid = _bidService.CreateBid(bid);
+                    _logger.LogInformation($"Bid created successfully with ID: {bid.Id}");
+                    return Ok(bid);
+                }
+                else
+                {
+                    _logger.LogWarning($"Failed to create bid: {bid.Validate().errorMessage}");
+                    return BadRequest(bid.Validate().errorMessage);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest(bid.Validate().errorMessage);
+                _logger.LogError($"Error creating bid: {ex.Message}");
+                return StatusCode(500, "Internal server error");
             }
-            
         }
 
         [HttpPost("filter")]
         public ActionResult BidFilter([FromBody] BidFilter filter)
         {
-            List<Bid> bids = _bidService.filter(filter);
+            try
+            {
+                _logger.LogInformation("Filtering bids");
 
-            return Ok(bids);
+                List<Bid> bids = _bidService.filter(filter);
+                _logger.LogInformation($"Filtered {bids.Count} bids");
+                return Ok(bids);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error filtering bids: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
-	}
+    }
 }
-

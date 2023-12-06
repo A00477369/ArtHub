@@ -14,74 +14,121 @@ namespace ArtHub.Controllers
     public class ArtworkController : ControllerBase
     {
         private readonly ArtworkService _artworkService;
+        private readonly ILogger<ArtworkController> _logger;
 
-        public ArtworkController(ArtworkService artworkService)
+        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger)
         {
             _artworkService = artworkService;
+            _logger = logger;
         }
 
         [HttpGet("{id:int}"),AllowAnonymous]
         public ActionResult GetArtworkById(int id)
         {
-            Artwork artwork = _artworkService.GetArtworkById(id);
-
-            if (artwork == null)
+            try
             {
-                return NotFound();
-            }
+                _logger.LogInformation($"Getting artwork by ID: {id}");
 
-            return Ok(artwork);
+                Artwork artwork = _artworkService.GetArtworkById(id);
+
+                if (artwork == null)
+                {
+                    _logger.LogWarning($"Artwork with ID {id} not found");
+                    return NotFound();
+                }
+
+                return Ok(artwork);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error getting artwork by ID {id}: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpPost]
         public ActionResult CreateArtwork([FromBody] CreateArtworkDto artworkDto)
         {
-            if (artworkDto == null)
+            try
             {
-                return BadRequest("Invalid artwork data");
+                _logger.LogInformation("Creating artwork");
+
+                if (artworkDto == null)
+                {
+                    _logger.LogWarning("Invalid artwork data received");
+                    return BadRequest("Invalid artwork data");
+                }
+
+                Artwork createdArtwork = new Artwork(1, artworkDto.Title, artworkDto.Description, artworkDto.ImageUrl, artworkDto.MinimumBid, false, artworkDto.SellerId, artworkDto.CategoryId, DateTime.Now, DateTime.Now, 0, StatusType.Draft);
+
+                if (createdArtwork.Validate().isValid)
+                {
+                    createdArtwork = _artworkService.CreateArtwork(createdArtwork);
+                    _logger.LogInformation($"Artwork created successfully with ID: {createdArtwork.Id}");
+                    return Ok(createdArtwork);
+                }
+                else
+                {
+                    _logger.LogWarning($"Failed to create artwork: {createdArtwork.Validate().errorMessage}");
+                    return BadRequest(createdArtwork.Validate().errorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error creating artwork: {ex.Message}");
+                return StatusCode(500, "Internal server error");
             }
 
-
-            Artwork createdArtwork = new Artwork(1,artworkDto.Title,artworkDto.Description,artworkDto.ImageUrl,artworkDto.MinimumBid,false,artworkDto.SellerId,artworkDto.CategoryId,DateTime.Now,DateTime.Now,0,StatusType.Draft);
-            if (createdArtwork.Validate().isValid)
-            {
-                createdArtwork = _artworkService.CreateArtwork(createdArtwork);
-                return Ok(createdArtwork);
-            }
-            else
-            {
-                return BadRequest(createdArtwork.Validate().errorMessage);
-            }
- 
-          
         }
 
         [HttpPut]
         public ActionResult UpdateArtwork([FromBody] UpdateArtworkDto artworkDto)
         {
-            if (artworkDto == null)
+            try
             {
-                return BadRequest("Invalid artwork data");
+                _logger.LogInformation("Updating artwork");
+
+                if (artworkDto == null)
+                {
+                    _logger.LogWarning("Invalid artwork data received");
+                    return BadRequest("Invalid artwork data");
+                }
+
+                Artwork existingArtwork = _artworkService.GetArtworkById(artworkDto.Id);
+
+                if (existingArtwork == null)
+                {
+                    _logger.LogWarning($"Artwork with ID {artworkDto.Id} not found for update");
+                    return NotFound("Artwork not found");
+                }
+
+                Artwork updatedArtwork = _artworkService.UpdateArtwork(artworkDto, existingArtwork);
+                _logger.LogInformation($"Artwork updated successfully with ID: {updatedArtwork.Id}");
+                return Ok(updatedArtwork);
             }
-
-            Artwork existingArtwork = _artworkService.GetArtworkById(artworkDto.Id);
-
-            if (existingArtwork == null)
+            catch (Exception ex)
             {
-                return NotFound("Artwork not found");
+                _logger.LogError($"Error updating artwork: {ex.Message}");
+                return StatusCode(500, "Internal server error");
             }
-
-            Artwork updatedArtwork = _artworkService.UpdateArtwork(artworkDto, existingArtwork);
-
-            return Ok(updatedArtwork);
         }
 
         [HttpGet, AllowAnonymous]
         public ActionResult GetAllArtworks()
         {
-            List<Artwork> artworks = _artworkService.GetAllArtworks();
+            try
+            {
+                _logger.LogInformation("Getting all artworks");
 
-            return Ok(artworks);
+                List<Artwork> artworks = _artworkService.GetAllArtworks();
+                _logger.LogInformation($"Retrieved {artworks.Count} artworks");
+                return Ok(artworks);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error getting all artworks: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
 
@@ -89,23 +136,56 @@ namespace ArtHub.Controllers
 
         public ActionResult ArtworkFilter([FromBody] ArtworkFilter filter)
         {
-            List<Artwork> artworks = _artworkService.filter(filter); 
+            try
+            {
+                _logger.LogInformation("Filtering artworks");
 
-            return Ok(artworks);
+                List<Artwork> artworks = _artworkService.filter(filter);
+                _logger.LogInformation($"Filtered {artworks.Count} artworks");
+                return Ok(artworks);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error filtering artworks: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpGet("startAuction/{id:int}")]
         public ActionResult StartAuction(int id)
         {
-            Artwork artwork = _artworkService.StartAuction(id);
-            return Ok(artwork);
+            try
+            {
+                _logger.LogInformation($"Starting auction for artwork ID: {id}");
+
+                Artwork artwork = _artworkService.StartAuction(id);
+                _logger.LogInformation($"Auction started successfully for artwork ID: {id}");
+                return Ok(artwork);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error starting auction for artwork ID {id}: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpGet("stopAuction/{id:int}")]
         public ActionResult StopAuction(int id)
         {
-            Artwork artwork = _artworkService.StopAuction(id);
-            return Ok(artwork);
+            try
+            {
+                _logger.LogInformation($"Stopping auction for artwork ID: {id}");
+
+                Artwork artwork = _artworkService.StopAuction(id);
+                _logger.LogInformation($"Auction stopped successfully for artwork ID: {id}");
+                return Ok(artwork);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error stoping auction for artwork ID {id}: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+
+            }
         }
 
 
