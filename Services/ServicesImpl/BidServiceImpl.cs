@@ -1,7 +1,9 @@
 ﻿using System;
+using ArtHub.Controllers;
 using ArtHub.Filters;
 using ArtHub.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ArtHub.Services.ServicesImpl
 {
@@ -9,11 +11,13 @@ namespace ArtHub.Services.ServicesImpl
 	{
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly ArtworkService _artworkService;
+        private readonly ILogger<BidServiceImpl> _logger;
 
-        public BidServiceImpl(IServiceScopeFactory scopeFactory, ArtworkService artworkService)
+        public BidServiceImpl(IServiceScopeFactory scopeFactory, ArtworkService artworkService, ILogger<BidServiceImpl> logger)
         {
             _artworkService = artworkService;
             _scopeFactory = scopeFactory;
+            _logger = logger;
         }
 
         public Bid CreateBid(Bid bid)
@@ -23,6 +27,8 @@ namespace ArtHub.Services.ServicesImpl
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
                 Artwork selectedArtwork = _artworkService.GetArtworkById(bid.ArtworkId);
+
+                
 
                 if(selectedArtwork != null && selectedArtwork.Live=="true" && selectedArtwork.MinimumBid <= bid.BidAmount && selectedArtwork.CurrentHighestBid <= bid.BidAmount)
                 {

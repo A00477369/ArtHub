@@ -16,12 +16,14 @@ namespace ArtHub.Controllers
     public class ArtworkController : ControllerBase
     {
         private readonly ArtworkService _artworkService;
+        private readonly BidService _bidService;
         private readonly ILogger<ArtworkController> _logger;
 
-        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger)
+        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService)
         {
             _artworkService = artworkService;
             _logger = logger;
+            _bidService = bidService;
         }
 
         [HttpGet("{id:int}"),AllowAnonymous]
@@ -181,6 +183,7 @@ namespace ArtHub.Controllers
                 _logger.LogInformation($"Stopping auction for artwork ID: {id}");
 
                 Artwork artwork = _artworkService.StopAuction(id);
+                _bidService.UpdateBidStatusByArtworkIdAndBidAmount(id, artwork.CurrentHighestBid);
                 _logger.LogInformation($"Auction stopped successfully for artwork ID: {id}");
                 return Ok(artwork);
             }
