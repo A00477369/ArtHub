@@ -24,19 +24,18 @@ namespace ArtHub.Models
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public double MinimumBid { get; set; }
-        public bool Live { get; set; }
+        public string Live { get; set; }
         public int SellerId { get; set; }
         public int CategoryId { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastUpdatedOn { get; set; }
         public DateTime LiveStartTime { get; set; }
         public double CurrentHighestBid { get; set; }
-        public StatusType Status { get; set; }
+        public String Status { get; set; }
 
-        public Artwork(int id, string title, string description, string imageUrl, double minimumBid, bool live, int sellerId,
-                   int categoryId, DateTime createdOn, DateTime lastUpdatedOn, double currentHighestBid, StatusType status)
+        public Artwork(string title, string description, string imageUrl, double minimumBid, string live, int sellerId,
+                   int categoryId, DateTime createdOn, DateTime lastUpdatedOn, double currentHighestBid, String status)
         {
-            Id = id;
             Title = title;
             Description = description;
             ImageUrl = imageUrl;

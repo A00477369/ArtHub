@@ -75,10 +75,10 @@ namespace ArtHub.Services.ServicesImpl
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
                 Artwork selectedArtwork = GetArtworkById(id);
-                if (!selectedArtwork.Live && selectedArtwork.Status == StatusType.Draft)
+                if (!selectedArtwork.Live && selectedArtwork.Status == StatusType.Draft.ToString())
                 {
                     selectedArtwork.Live = true;
-                    selectedArtwork.Status = StatusType.Active;
+                    selectedArtwork.Status = StatusType.Active.ToString();
                     selectedArtwork.LiveStartTime = DateTime.Now;
                     context.SaveChanges();
                 }
@@ -98,7 +98,7 @@ namespace ArtHub.Services.ServicesImpl
                 if (selectedArtwork.Live)
                 {
                     selectedArtwork.Live = false;
-                    selectedArtwork.Status = StatusType.Sold;
+                    selectedArtwork.Status = StatusType.Sold.ToString();
 
                 }
 

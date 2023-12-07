@@ -61,7 +61,7 @@ namespace ArtHub.Controllers
                     return BadRequest("Invalid artwork data");
                 }
 
-                Artwork createdArtwork = new Artwork(1, artworkDto.Title, artworkDto.Description, artworkDto.ImageUrl, artworkDto.MinimumBid, false, artworkDto.SellerId, artworkDto.CategoryId, DateTime.Now, DateTime.Now, 0, StatusType.Draft);
+                Artwork createdArtwork = new Artwork(artworkDto.Title, artworkDto.Description, artworkDto.ImageUrl, artworkDto.MinimumBid, "false", artworkDto.SellerId, artworkDto.CategoryId, DateTime.Now, DateTime.Now, 0, StatusType.Draft.ToString());
 
                 if (createdArtwork.Validate().isValid)
                 {

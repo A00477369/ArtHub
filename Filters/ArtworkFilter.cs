@@ -25,7 +25,7 @@ namespace ArtHub.Filters
 
             if (Status != null)
             {
-                query = query.Where(a => a.Status == Status);
+                query = query.Where(a => a.Status == Status.ToString());
             }
 
             return query;
