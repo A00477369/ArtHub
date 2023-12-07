@@ -61,6 +61,7 @@ namespace ArtHub.Services.ServicesImpl
                 var userPreferences = context.UserPreferences.Where(up => up.UserId == id).
                     Select(a => new UserPreferenceResponse
                 {
+                    Id = a.Id,
                     CategoryId = a.CategoryId,
                     CreatedOn = a.CreatedOn,
                     LastUpdatedOn = a.LastUpdatedOn,
