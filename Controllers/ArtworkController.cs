@@ -17,13 +17,15 @@ namespace ArtHub.Controllers
     {
         private readonly ArtworkService _artworkService;
         private readonly BidService _bidService;
+        private readonly UserPreferenceService _userPreferenceService;
         private readonly ILogger<ArtworkController> _logger;
 
-        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService)
+        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService, UserPreferenceService userPreferenceService)
         {
             _artworkService = artworkService;
             _logger = logger;
             _bidService = bidService;
+            _userPreferenceService = userPreferenceService;
         }
 
         [HttpGet("{id:int}"),AllowAnonymous]
@@ -190,6 +192,28 @@ namespace ArtHub.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error stoping auction for artwork ID {id}: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+
+            }
+        }
+
+        [HttpGet("user/{id:int}")]
+        public ActionResult GetArtworksBasedOnUserId(int id)
+        {
+            try
+            {
+                _logger.LogInformation($"Fetching Artwork Based on User Preference for User: {id}");
+
+                List<int> categoryIds = _userPreferenceService.GetCategoryIdsByUserId(id);
+                ArtworkFilter filter = new ArtworkFilter();
+                filter.CategoryIds = categoryIds;
+                List<Artwork> artworks = _artworkService.filter(filter);
+
+                return Ok(artworks);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error fetching Artwork Based on User Preference for User: {id}: {ex.Message}");
                 return StatusCode(500, "Internal server error");
 
             }

@@ -3,7 +3,7 @@ namespace ArtHub.dto
 {
     public class CreateUserPreferenceDto
     {
-        public int CategoryId { get; set; }
+        public List<int> CategoryIds { get; set; }
         public int UserId { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using ArtHub.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace ArtHub.Authorization
 {
@@ -20,31 +21,14 @@ namespace ArtHub.Authorization
     {
         private readonly IConfiguration _configuration;
         private readonly UserService _userService;
-        //public static User user = new User(
-        //            id: 1,
-        //            firstName: "John",
-        //            lastName: "Doe",
-        //            username: "john_doe",
-        //            email: "john.doe@example.com",
-        //            password: "securePassword123",
-        //            mobile: "1234567890",
-        //            profilePictureUrl: "profile.jpg",
-        //            gender: "Male",
-        //            birthDate: DateTime.Now,
-        //            createdOn: DateTime.Now,
-        //            lastUpdatedOn: DateTime.Now,
-        //            city: "New York",
-        //            province: "NY",
-        //            country: "USA",
-        //            postalCode: "10001"
-        //            );
+        private readonly IServiceScopeFactory _scopeFactory;
 
-        //    public static LoggedInUser user = new LoggedInUser(user1);
-
-        public AuthController(IConfiguration configuration, UserService userService)
+        public AuthController(IConfiguration configuration, UserService userService, IServiceScopeFactory scopeFactory)
         {
             _userService = userService;
             _configuration = configuration;
+            _scopeFactory = scopeFactory;
+
         }
 
 
@@ -64,6 +48,16 @@ namespace ArtHub.Authorization
             }
 
             LoggedInUser loggedInUser = new(user);
+
+            user.FirstLogin = "false";
+
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                context.Entry(user).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+
 
             var refreshToken = GenerateRefreshToken();
             SetRefreshToken(refreshToken, loggedInUser);
@@ -114,6 +108,7 @@ namespace ArtHub.Authorization
                 new Claim("lastName", user.LastName),
                 new Claim("firstName", user.FirstName),
                 new Claim("username", user.Username),
+                new Claim("firstLogin",user.FirstLogin)
 
             };
 

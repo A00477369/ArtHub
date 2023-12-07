@@ -23,11 +23,12 @@ namespace ArtHub.Models
         public string Province { get; set; }
         public string Country { get; set; }
         public string PostalCode { get; set; }
+        public string FirstLogin { get; set; }
 
 
-        public User( string firstName, string lastName, string username, string email, string password,
+        public User(string firstName, string lastName, string username, string email, string password,
                 string mobile, string profilePictureUrl, string gender, DateTime birthDate, DateTime createdOn, DateTime lastUpdatedOn,
-            string city, string province, string country, string postalCode)
+            string city, string province, string country, string postalCode, string firstLogin)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -44,6 +45,7 @@ namespace ArtHub.Models
             Province = province;
             Country = country;
             PostalCode = postalCode;
+            FirstLogin = firstLogin;
         }
 
         public (bool isValid, string errorMessage) Validate()
