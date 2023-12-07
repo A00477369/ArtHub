@@ -1,4 +1,5 @@
 ﻿using System;
+using ArtHub.dto;
 using ArtHub.Models;
 
 namespace ArtHub.Services
@@ -8,7 +9,7 @@ namespace ArtHub.Services
         UserPreference CreateUserPreference(UserPreference createdUserPreference);
         List<int> GetCategoryIdsByUserId(int id);
         UserPreference GetUserPreferenceById(int id);
-        List<UserPreference> GetUserPreferencesByUserId(int id);
+        List<UserPreferenceResponse> GetUserPreferencesByUserId(int id);
     }
 }
 
