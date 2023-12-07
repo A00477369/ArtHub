@@ -17,14 +17,17 @@ namespace ArtHub.Controllers
     {
         private readonly ArtworkService _artworkService;
         private readonly BidService _bidService;
-        private readonly UserPreferenceService _userPreferenceService;
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly ILogger<ArtworkController> _logger;
+        private readonly UserPreferenceService _userPreferenceService;
 
-        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService, UserPreferenceService userPreferenceService)
+
+        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService, UserPreferenceService userPreferenceService, IWebHostEnvironment hostEnvironment)
         {
             _artworkService = artworkService;
             _logger = logger;
             _bidService = bidService;
+            this._hostEnvironment = hostEnvironment;
             _userPreferenceService = userPreferenceService;
         }
 
@@ -53,8 +56,21 @@ namespace ArtHub.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateArtwork([FromBody] CreateArtworkDto artworkDto)
+        public async Task<ActionResult> CreateArtworkAsync([FromForm] string title,
+    [FromForm] string description,
+    [FromForm] IFormFile imageFile,
+    [FromForm] double minimumBid,
+    [FromForm] int sellerId,
+    [FromForm] int categoryId)
         {
+            CreateArtworkDto artworkDto = new CreateArtworkDto();
+            artworkDto.Title = title;
+            artworkDto.Description = description;
+            artworkDto.ImageFile = imageFile;
+            artworkDto.ImageUrl = "";
+            artworkDto.MinimumBid = minimumBid;
+            artworkDto.SellerId = sellerId;
+            artworkDto.CategoryId = categoryId;
             try
             {
                 _logger.LogInformation("Creating artwork");
@@ -64,6 +80,8 @@ namespace ArtHub.Controllers
                     _logger.LogWarning("Invalid artwork data received");
                     return BadRequest("Invalid artwork data");
                 }
+
+                artworkDto.ImageUrl = await SaveImage(artworkDto.ImageFile);
 
                 Artwork createdArtwork = new Artwork(artworkDto.Title, artworkDto.Description, artworkDto.ImageUrl, artworkDto.MinimumBid, "false", artworkDto.SellerId, artworkDto.CategoryId, DateTime.Now, DateTime.Now, 0, StatusType.Draft.ToString());
 
@@ -198,6 +216,26 @@ namespace ArtHub.Controllers
 
             }
         }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile image)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(image.FileName).Take(10).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(image.FileName);
+            var relativeImagePath = Path.Combine("Images", imageName);
+
+            var webRootPath = _hostEnvironment.WebRootPath;
+
+            var imagePath = Path.Combine(webRootPath, relativeImagePath);
+
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            var imageUrl = "/" + relativeImagePath.Replace("\\", "/");
+            return imageUrl;
+        }
+
 
         [HttpGet("user/{id:int}")]
         public ActionResult GetArtworksBasedOnUserId(int id)

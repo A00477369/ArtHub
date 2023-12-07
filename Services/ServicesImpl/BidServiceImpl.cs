@@ -78,6 +78,7 @@ namespace ArtHub.Services.ServicesImpl
 
                 if (selectedBid != null)
                 {
+                    
                     selectedBid.Successful = "true";
                     context.Entry(selectedBid).State = EntityState.Modified;
                     context.SaveChanges();

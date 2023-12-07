@@ -84,11 +84,6 @@ namespace ArtHub.Models
                 return (false, "Description is required.");
             }
 
-            if (!string.IsNullOrWhiteSpace(ImageUrl) && !Uri.IsWellFormedUriString(ImageUrl, UriKind.Absolute))
-            {
-                return (false, "Invalid URL format for ImageUrl.");
-            }
-
             if (MinimumBid < 0)
             {
                 return (false, "MinimumBid must be a non-negative number.");
