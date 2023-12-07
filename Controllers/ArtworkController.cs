@@ -19,13 +19,16 @@ namespace ArtHub.Controllers
         private readonly BidService _bidService;
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly ILogger<ArtworkController> _logger;
+        private readonly UserPreferenceService _userPreferenceService;
 
-        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService, IWebHostEnvironment hostEnvironment)
+
+        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService, UserPreferenceService userPreferenceService, IWebHostEnvironment hostEnvironment)
         {
             _artworkService = artworkService;
             _logger = logger;
             _bidService = bidService;
             this._hostEnvironment = hostEnvironment;
+            _userPreferenceService = userPreferenceService;
         }
 
         [HttpGet("{id:int}"),AllowAnonymous]
@@ -35,7 +38,7 @@ namespace ArtHub.Controllers
             {
                 _logger.LogInformation($"Getting artwork by ID: {id}");
 
-                Artwork artwork = _artworkService.GetArtworkById(id);
+                ArtworkResponse artwork = _artworkService.GetArtworkById(id);
 
                 if (artwork == null)
                 {
@@ -102,13 +105,15 @@ namespace ArtHub.Controllers
                     return BadRequest("Invalid artwork data");
                 }
 
-                Artwork existingArtwork = _artworkService.GetArtworkById(artworkDto.Id);
+                ArtworkResponse existingArtworkResponse = _artworkService.GetArtworkById(artworkDto.Id);
 
-                if (existingArtwork == null)
+                if (existingArtworkResponse == null)
                 {
                     _logger.LogWarning($"Artwork with ID {artworkDto.Id} not found for update");
                     return NotFound("Artwork not found");
                 }
+
+                Artwork existingArtwork = new Artwork(existingArtworkResponse);
 
                 Artwork updatedArtwork = _artworkService.UpdateArtwork(artworkDto, existingArtwork);
                 _logger.LogInformation($"Artwork updated successfully with ID: {updatedArtwork.Id}");
@@ -128,7 +133,7 @@ namespace ArtHub.Controllers
             {
                 _logger.LogInformation("Getting all artworks");
 
-                List<Artwork> artworks = _artworkService.GetAllArtworks();
+                List<ArtworkResponse> artworks = _artworkService.GetAllArtworks();
                Console.Write($"Retrieved {artworks.Count} artworks: {JsonConvert.SerializeObject(artworks)}");
 
                 _logger.LogInformation($"Retrieved {artworks.Count} artworks");
@@ -150,7 +155,7 @@ namespace ArtHub.Controllers
             {
                 _logger.LogInformation("Filtering artworks");
 
-                List<Artwork> artworks = _artworkService.filter(filter);
+                List<ArtworkResponse> artworks = _artworkService.filter(filter);
                 _logger.LogInformation($"Filtered {artworks.Count} artworks");
                 return Ok(artworks);
             }
@@ -213,6 +218,28 @@ namespace ArtHub.Controllers
             return imageName;
         }
 
+
+        [HttpGet("user/{id:int}")]
+        public ActionResult GetArtworksBasedOnUserId(int id)
+        {
+            try
+            {
+                _logger.LogInformation($"Fetching Artwork Based on User Preference for User: {id}");
+
+                List<int> categoryIds = _userPreferenceService.GetCategoryIdsByUserId(id);
+                ArtworkFilter filter = new ArtworkFilter();
+                filter.CategoryIds = categoryIds;
+                List<ArtworkResponse> artworks = _artworkService.filter(filter);
+
+                return Ok(artworks);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error fetching Artwork Based on User Preference for User: {id}: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+
+            }
+        }
 
 
     }

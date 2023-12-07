@@ -19,6 +19,7 @@ namespace ArtHub.poco
         public DateTime BirthDate { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastUpdatedOn { get; set; }
+        public string FirstLogin { get; set; }
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; } = string.Empty;
         public DateTime TokenCreated { get; set; }
@@ -37,6 +38,7 @@ namespace ArtHub.poco
             ProfilePictureUrl = user.ProfilePictureUrl;
             Gender = user.Gender;
             BirthDate = user.BirthDate;
+            FirstLogin = user.FirstLogin;
         }
     }
 

@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations.Schema;
+using ArtHub.dto;
 
 namespace ArtHub.Models
 {
@@ -47,6 +48,27 @@ namespace ArtHub.Models
             LastUpdatedOn = lastUpdatedOn;
             CurrentHighestBid = currentHighestBid;
             Status = status;
+        }
+
+        public Artwork()
+        {
+        }
+
+        public Artwork(ArtworkResponse existingArtworkResponse)
+        {
+            Id = existingArtworkResponse.Id;
+            Title = existingArtworkResponse.Title;
+            Description = existingArtworkResponse.Description;
+            ImageUrl = existingArtworkResponse.ImageUrl;
+            MinimumBid = existingArtworkResponse.MinimumBid;
+            Live = existingArtworkResponse.Live;
+            SellerId = existingArtworkResponse.SellerId;
+            CategoryId = existingArtworkResponse.CategoryId;
+            CreatedOn = existingArtworkResponse.CreatedOn;
+            LastUpdatedOn = existingArtworkResponse.LastUpdatedOn;
+            LiveStartTime = existingArtworkResponse.LiveStartTime;
+            CurrentHighestBid = existingArtworkResponse.CurrentHighestBid;
+            Status = existingArtworkResponse.Status;
         }
 
         public (bool isValid, string errorMessage) Validate()

@@ -5,12 +5,56 @@
       "PackagePath": "staticwebassets/ArtHub.bundle.scp.css"
     },
     {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/asset-manifest.json",
+      "PackagePath": "staticwebassets/asset-manifest.json"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/css/.DS_Store",
+      "PackagePath": "staticwebassets/css/.DS_Store"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/css/main.css",
+      "PackagePath": "staticwebassets/css/main.css"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/css/main.css.map",
+      "PackagePath": "staticwebassets/css/main.css.map"
+    },
+    {
       "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
       "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/js/.DS_Store",
+      "PackagePath": "staticwebassets/js/.DS_Store"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/js/787.80be1d18.chunk.js",
+      "PackagePath": "staticwebassets/js/787.80be1d18.chunk.js"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/js/787.80be1d18.chunk.js.map",
+      "PackagePath": "staticwebassets/js/787.80be1d18.chunk.js.map"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/js/main.8e9bd322.js.LICENSE.txt",
+      "PackagePath": "staticwebassets/js/main.8e9bd322.js.LICENSE.txt"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/js/main.js",
+      "PackagePath": "staticwebassets/js/main.js"
     },
     {
       "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/js/site.js",
@@ -243,6 +287,42 @@
     {
       "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/logo192.png",
+      "PackagePath": "staticwebassets/logo192.png"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/logo512.png",
+      "PackagePath": "staticwebassets/logo512.png"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/manifest.json",
+      "PackagePath": "staticwebassets/manifest.json"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/media/art-bg-1.ff7b55ada9c91934d1b3.jpg",
+      "PackagePath": "staticwebassets/media/art-bg-1.ff7b55ada9c91934d1b3.jpg"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/media/blob-2.c6143ed3bcc84922f5b7b80c300f0ddb.svg",
+      "PackagePath": "staticwebassets/media/blob-2.c6143ed3bcc84922f5b7b80c300f0ddb.svg"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/media/blob.613bbab724bb58796313de8ef1d25f63.svg",
+      "PackagePath": "staticwebassets/media/blob.613bbab724bb58796313de8ef1d25f63.svg"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/media/mastercard.26cc191ab91cd48cb1b6.png",
+      "PackagePath": "staticwebassets/media/mastercard.26cc191ab91cd48cb1b6.png"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/media/visa.ebba0ff64d607f29dce9.jpg",
+      "PackagePath": "staticwebassets/media/visa.ebba0ff64d607f29dce9.jpg"
+    },
+    {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/robots.txt",
+      "PackagePath": "staticwebassets/robots.txt"
     },
     {
       "Id": "obj/Release/net7.0/staticwebassets/msbuild.ArtHub.Microsoft.AspNetCore.StaticWebAssets.props",
