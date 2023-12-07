@@ -29,7 +29,7 @@ namespace ArtHub.Services.ServicesImpl
             }
         }
 
-        public List<Artwork> filter(ArtworkFilter filter)
+        public List<ArtworkResponse> filter(ArtworkFilter filter)
         {
             using (var scope = _scopeFactory.CreateScope())
             {
@@ -37,37 +37,124 @@ namespace ArtHub.Services.ServicesImpl
 
                 IQueryable<Artwork> query = context.Artworks;
 
+                // Apply the filter logic from the ArtworkFilter class
                 query = filter.ApplyFilter(query);
 
-                return query.ToList();
-            }
+                List<ArtworkResponse> filteredArtworks = query
+                    .Select(a => new ArtworkResponse
+                    {
+                        Id = a.Id,
+                        Title = a.Title,
+                        Description = a.Description,
+                        ImageUrl = a.ImageUrl,
+                        MinimumBid = a.MinimumBid,
+                        Live = a.Live,
+                        SellerId = a.SellerId,
+                        CategoryId = a.CategoryId,
+                        CreatedOn = a.CreatedOn,
+                        LastUpdatedOn = a.LastUpdatedOn,
+                        LiveStartTime = a.LiveStartTime,
+                        CurrentHighestBid = a.CurrentHighestBid,
+                        Status = a.Status,
+                        CategoryName = GetCategoryName(context, a.CategoryId),
+                        SellerName = GetSellerName(context, a.SellerId)
+                    })
+                    .ToList();
 
+                return filteredArtworks;
+            }
         }
 
-        public List<Artwork> GetAllArtworks()
+
+        //public List<Artwork> GetAllArtworks()
+        //{
+        //    using (var scope = _scopeFactory.CreateScope())
+        //    {
+        //        var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+        //        List<Artwork> artworks = context.Artworks.ToList();
+
+        //        return artworks;
+
+        //    }
+        //}
+
+        public List<ArtworkResponse> GetAllArtworks()
         {
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                List<Artwork> artworks = context.Artworks.ToList();
+                List<ArtworkResponse> artworks = context.Artworks
+                    .Select(a => new ArtworkResponse
+                    {
+                        Id = a.Id,
+                        Title = a.Title,
+                        Description = a.Description,
+                        ImageUrl = a.ImageUrl,
+                        MinimumBid = a.MinimumBid,
+                        Live = a.Live,
+                        SellerId = a.SellerId,
+                        CategoryId = a.CategoryId,
+                        CreatedOn = a.CreatedOn,
+                        LastUpdatedOn = a.LastUpdatedOn,
+                        LiveStartTime = a.LiveStartTime,
+                        CurrentHighestBid = a.CurrentHighestBid,
+                        Status = a.Status,
+                        CategoryName = GetCategoryName(context, a.CategoryId),
+                        SellerName = GetSellerName(context, a.SellerId) 
+                    })
+                    .ToList();
 
                 return artworks;
-
             }
         }
 
-        public Artwork GetArtworkById(int id)
+        private static string GetSellerName(AppDbContext context, int sellerId)
+        {
+            var seller = context.Users.FirstOrDefault(s => s.Id == sellerId);
+            return seller != null ? seller.FirstName + " " + seller.LastName : null;
+        }
+
+        private static string GetCategoryName(AppDbContext context, int categoryId)
+        {
+            var category = context.Categories.FirstOrDefault(c => c.Id == categoryId);
+            return category != null ? category.Title : null;
+        }
+
+
+        public ArtworkResponse GetArtworkById(int id)
         {
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                Artwork artwork = context.Artworks.Find(id);
 
-                return artwork;
+                ArtworkResponse artworkResponse = context.Artworks
+                    .Where(a => a.Id == id)
+                    .Select(a => new ArtworkResponse
+                    {
+                        Id = a.Id,
+                        Title = a.Title,
+                        Description = a.Description,
+                        ImageUrl = a.ImageUrl,
+                        MinimumBid = a.MinimumBid,
+                        Live = a.Live,
+                        SellerId = a.SellerId,
+                        CategoryId = a.CategoryId,
+                        CreatedOn = a.CreatedOn,
+                        LastUpdatedOn = a.LastUpdatedOn,
+                        LiveStartTime = a.LiveStartTime,
+                        CurrentHighestBid = a.CurrentHighestBid,
+                        Status = a.Status,
+                        CategoryName = GetCategoryName(context, a.CategoryId),
+                        SellerName = GetSellerName(context, a.SellerId)
+                    })
+                    .FirstOrDefault();
 
+                return artworkResponse;
             }
         }
+
 
         public Artwork StartAuction(int id)
         {
@@ -75,7 +162,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                Artwork selectedArtwork = GetArtworkById(id);
+                Artwork selectedArtwork = new Artwork(GetArtworkById(id));
                 if (selectedArtwork.Live == "false" && selectedArtwork.Status == StatusType.Draft.ToString())
                 {
                     selectedArtwork.Live = "true";
@@ -99,7 +186,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                Artwork selectedArtwork = GetArtworkById(id);
+                Artwork selectedArtwork = new Artwork(GetArtworkById(id));
                 if (selectedArtwork.Live=="true")
                 {
                     selectedArtwork.Live = "false";

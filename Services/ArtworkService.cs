@@ -8,9 +8,9 @@ namespace ArtHub.Services
     public interface ArtworkService
     {
         Artwork CreateArtwork(Artwork createdArtwork);
-        List<Artwork> filter(ArtworkFilter filter);
-        List<Artwork> GetAllArtworks();
-        Artwork GetArtworkById(int id);
+        List<ArtworkResponse> filter(ArtworkFilter filter);
+        List<ArtworkResponse> GetAllArtworks();
+        ArtworkResponse GetArtworkById(int id);
         Artwork StartAuction(int id);
         Artwork StopAuction(int id);
         Artwork UpdateArtwork(UpdateArtworkDto artworkDto, Artwork existingArtwork);
