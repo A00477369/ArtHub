@@ -71,6 +71,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors("ReactPolicy");
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

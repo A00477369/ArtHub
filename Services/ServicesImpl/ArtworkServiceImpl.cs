@@ -1,6 +1,7 @@
 ﻿using ArtHub.dto;
 using ArtHub.Filters;
 using ArtHub.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ArtHub.Services.ServicesImpl
 {
@@ -75,13 +76,17 @@ namespace ArtHub.Services.ServicesImpl
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
                 Artwork selectedArtwork = GetArtworkById(id);
-                if (!selectedArtwork.Live && selectedArtwork.Status == StatusType.Draft.ToString())
+                if (selectedArtwork.Live == "false" && selectedArtwork.Status == StatusType.Draft.ToString())
                 {
-                    selectedArtwork.Live = true;
+                    selectedArtwork.Live = "true";
                     selectedArtwork.Status = StatusType.Active.ToString();
                     selectedArtwork.LiveStartTime = DateTime.Now;
+                    context.Entry(selectedArtwork).State = EntityState.Modified;
                     context.SaveChanges();
                 }
+
+               
+
                 return selectedArtwork;
             }
 
@@ -95,12 +100,14 @@ namespace ArtHub.Services.ServicesImpl
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
                 Artwork selectedArtwork = GetArtworkById(id);
-                if (selectedArtwork.Live)
+                if (selectedArtwork.Live=="true")
                 {
-                    selectedArtwork.Live = false;
+                    selectedArtwork.Live = "false";
                     selectedArtwork.Status = StatusType.Sold.ToString();
+                    context.Entry(selectedArtwork).State = EntityState.Modified;
 
                 }
+              
 
                 context.SaveChanges();
                 return selectedArtwork;
@@ -116,6 +123,11 @@ namespace ArtHub.Services.ServicesImpl
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                if (!context.Artworks.Local.Contains(existingArtwork))
+                {
+                    context.Artworks.Attach(existingArtwork);
+                }
 
                 existingArtwork.Title = artworkDto.Title;
                 existingArtwork.Description = artworkDto.Description;

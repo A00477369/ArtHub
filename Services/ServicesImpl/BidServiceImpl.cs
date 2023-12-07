@@ -24,7 +24,7 @@ namespace ArtHub.Services.ServicesImpl
 
                 Artwork selectedArtwork = _artworkService.GetArtworkById(bid.ArtworkId);
 
-                if(selectedArtwork != null && selectedArtwork.Live && selectedArtwork.MinimumBid <= bid.BidAmount && selectedArtwork.CurrentHighestBid <= bid.BidAmount)
+                if(selectedArtwork != null && selectedArtwork.Live=="true" && selectedArtwork.MinimumBid <= bid.BidAmount && selectedArtwork.CurrentHighestBid <= bid.BidAmount)
                 {
 
                     bid = context.Bids.Add(bid).Entity;
