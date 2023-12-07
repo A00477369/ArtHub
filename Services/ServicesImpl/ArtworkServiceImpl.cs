@@ -65,7 +65,7 @@ namespace ArtHub.Services.ServicesImpl
             }
         }
 
-
+/*
         //public List<Artwork> GetAllArtworks()
         //{
         //    using (var scope = _scopeFactory.CreateScope())
@@ -78,7 +78,7 @@ namespace ArtHub.Services.ServicesImpl
 
         //    }
         //}
-
+*/
         public List<ArtworkResponse> GetAllArtworks()
         {
             using (var scope = _scopeFactory.CreateScope())
