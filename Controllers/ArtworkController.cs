@@ -222,13 +222,18 @@ namespace ArtHub.Controllers
         {
             string imageName = new String(Path.GetFileNameWithoutExtension(image.FileName).Take(10).ToArray()).Replace(" ", "-");
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(image.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            var relativeImagePath = Path.Combine("Images", imageName);
+
+            var webRootPath = _hostEnvironment.WebRootPath;
+
+            var imagePath = Path.Combine(webRootPath, relativeImagePath);
 
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await image.CopyToAsync(fileStream);
             }
-            return imageName;
+            var imageUrl = "/" + relativeImagePath.Replace("\\", "/");
+            return imageUrl;
         }
 
 
