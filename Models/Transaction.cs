@@ -3,11 +3,13 @@ using Microsoft.VisualBasic;
 using System.Diagnostics.Metrics;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArtHub.Models
 {
 	public class Transaction
 	{
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int BidId { get; set; }
         public string CardHolderFirstName { get; set; }
@@ -16,10 +18,10 @@ namespace ArtHub.Models
         public string State { get; set; }
         public string Country { get; set; }
         public string PostalCode { get; set; }
-        public string CardType { get; set; }
-        public string CardNumber { get; set; }
-        public string ExpiryDate { get; set; }
-        public string CVV { get; set; }
+        [NotMapped]public string CardType { get; set; }
+        [NotMapped] public string CardNumber { get; set; }
+        [NotMapped] public string ExpiryDate { get; set; }
+        [NotMapped] public string CVV { get; set; }
 
         public Transaction()
         {

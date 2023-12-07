@@ -8,7 +8,7 @@ namespace ArtHub.Services.ServicesImpl
 	{
         private readonly IServiceScopeFactory _scopeFactory;
 
-        public UserPreferenceServiceImpl(IServiceScopeFactory scopeFactory, ArtworkService artworkService)
+        public UserPreferenceServiceImpl(IServiceScopeFactory scopeFactory)
         {
             _scopeFactory = scopeFactory;
         }
@@ -18,10 +18,25 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 createdUserPreference = context.UserPreferences.Add(createdUserPreference).Entity;
-
+                context.SaveChanges();
                 return createdUserPreference;
             }
                  
+        }
+
+        public List<int> GetCategoryIdsByUserId(int id)
+        {
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                var categoryIds = context.UserPreferences
+                                              .Where(up => up.UserId == id)
+                                              .Select(up => up.CategoryId)
+                                              .ToList();
+
+                return categoryIds;
+            }
         }
 
         public UserPreference GetUserPreferenceById(int id)
