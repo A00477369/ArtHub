@@ -17,13 +17,15 @@ namespace ArtHub.Controllers
     {
         private readonly ArtworkService _artworkService;
         private readonly BidService _bidService;
+        private readonly IWebHostEnvironment _hostEnvironment;
         private readonly ILogger<ArtworkController> _logger;
 
-        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService)
+        public ArtworkController(ArtworkService artworkService, ILogger<ArtworkController> logger, BidService bidService, IWebHostEnvironment hostEnvironment)
         {
             _artworkService = artworkService;
             _logger = logger;
             _bidService = bidService;
+            this._hostEnvironment = hostEnvironment;
         }
 
         [HttpGet("{id:int}"),AllowAnonymous]
@@ -51,7 +53,7 @@ namespace ArtHub.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateArtwork([FromBody] CreateArtworkDto artworkDto)
+        public async Task<ActionResult> CreateArtworkAsync([FromBody] CreateArtworkDto artworkDto)
         {
             try
             {
@@ -62,6 +64,8 @@ namespace ArtHub.Controllers
                     _logger.LogWarning("Invalid artwork data received");
                     return BadRequest("Invalid artwork data");
                 }
+
+                artworkDto.ImageUrl = await SaveImage(artworkDto.ImageFile);
 
                 Artwork createdArtwork = new Artwork(artworkDto.Title, artworkDto.Description, artworkDto.ImageUrl, artworkDto.MinimumBid, "false", artworkDto.SellerId, artworkDto.CategoryId, DateTime.Now, DateTime.Now, 0, StatusType.Draft.ToString());
 
@@ -194,6 +198,21 @@ namespace ArtHub.Controllers
 
             }
         }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile image)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(image.FileName).Take(10).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(image.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            return imageName;
+        }
+
 
 
     }

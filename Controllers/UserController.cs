@@ -3,6 +3,7 @@ using ArtHub.Models;
 using ArtHub.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace ArtHub.Controllers
 {
@@ -12,10 +13,12 @@ namespace ArtHub.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public UserController(UserService userService)
+        public UserController(UserService userService, IWebHostEnvironment hostEnvironment)
         {
             _userService = userService;
+            this._hostEnvironment = hostEnvironment;
         }
 
         [HttpGet("{id:int}")]
@@ -95,6 +98,20 @@ namespace ArtHub.Controllers
         {
             List<User> users = _userService.GetAllUsers();
             return Ok(users);
+        }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile image)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(image.FileName).Take(10).ToArray()).Replace(" ", "-");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(image.FileName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            return imageName;
         }
     }
 }

@@ -35,6 +35,7 @@ namespace ArtHub.Services.ServicesImpl
 
                     bid = context.Bids.Add(bid).Entity;
                     selectedArtwork.CurrentHighestBid = bid.BidAmount;
+                    context.Entry(selectedArtwork).State = EntityState.Modified;
                     context.SaveChanges();
                 }
 
@@ -77,7 +78,9 @@ namespace ArtHub.Services.ServicesImpl
 
                 if (selectedBid != null)
                 {
+                    
                     selectedBid.Successful = "true";
+                    context.Entry(selectedBid).State = EntityState.Modified;
                     context.SaveChanges();
                 }
 

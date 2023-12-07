@@ -9,6 +9,7 @@ namespace ArtHub.dto
         public required string Email { get; set; }
         public required string Password { get; set; }
         public required string Mobile { get; set; }
+        public IFormFile ImageFile { get; set; }
         public required string ProfilePictureUrl { get; set; }
         public required string Gender { get; set; }
         public required DateTime BirthDate { get; set; }
