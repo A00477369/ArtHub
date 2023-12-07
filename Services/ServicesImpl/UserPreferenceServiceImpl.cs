@@ -77,6 +77,23 @@ namespace ArtHub.Services.ServicesImpl
             var category = context.Categories.FirstOrDefault(c => c.Id == categoryId);
             return category != null ? category.Title : null;
         }
+
+        public UserPreference DeleteUserPreferenceById(int id)
+        {
+            using (var scope = _scopeFactory.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                UserPreference userPreferenceToDelete = context.UserPreferences.Find(id);
+                if (userPreferenceToDelete != null)
+                {
+                    context.UserPreferences.Remove(userPreferenceToDelete);
+                    context.SaveChanges();
+                }
+                return userPreferenceToDelete;
+            }
+
+
+        }
     }
 }
 
