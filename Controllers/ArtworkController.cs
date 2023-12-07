@@ -56,8 +56,21 @@ namespace ArtHub.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateArtworkAsync([FromBody] CreateArtworkDto artworkDto)
+        public async Task<ActionResult> CreateArtworkAsync([FromForm] string title,
+    [FromForm] string description,
+    [FromForm] IFormFile imageFile,
+    [FromForm] double minimumBid,
+    [FromForm] int sellerId,
+    [FromForm] int categoryId)
         {
+            CreateArtworkDto artworkDto = new CreateArtworkDto();
+            artworkDto.Title = title;
+            artworkDto.Description = description;
+            artworkDto.ImageFile = imageFile;
+            artworkDto.ImageUrl = "";
+            artworkDto.MinimumBid = minimumBid;
+            artworkDto.SellerId = sellerId;
+            artworkDto.CategoryId = categoryId;
             try
             {
                 _logger.LogInformation("Creating artwork");

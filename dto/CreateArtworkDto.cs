@@ -4,12 +4,12 @@ namespace ArtHub.dto
 {
     public class CreateArtworkDto
     {
-        public required string Title { get; set; }
-        public required string Description { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
         public IFormFile ImageFile { get; set; }
         public string ImageUrl { get; set; }
-        public required double MinimumBid { get; set; }
-        public required int SellerId { get; set; }
-        public required int CategoryId { get; set; }
+        public double MinimumBid { get; set; }
+        public int SellerId { get; set; }
+        public int CategoryId { get; set; }
     }
 }
