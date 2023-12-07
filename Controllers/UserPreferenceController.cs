@@ -54,13 +54,23 @@ namespace ArtHub.Controllers
         [HttpGet("user/{id}")]
         public ActionResult GetAllUserPreferences(int id)
         {
-            List<UserPreference> userPreferences = _userPreferenceService.GetUserPreferencesByUserId(id);
+            List<UserPreferenceResponse> userPreferences = _userPreferenceService.GetUserPreferencesByUserId(id);
 
             return Ok(userPreferences);
         }
+
+        [HttpDelete("{id:int}")]
+        public ActionResult DeleteUserPreference(int id)
+        {
+            UserPreference userPreference = _userPreferenceService.DeleteUserPreferenceById(id);
+
+            if (userPreference == null)
+            {
+                return NotFound("User preference not found");
+            }
+
+            return Ok(userPreference);
+        }
     }
 
-    
-
-    
 }

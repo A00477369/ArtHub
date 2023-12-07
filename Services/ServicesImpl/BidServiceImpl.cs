@@ -26,7 +26,7 @@ namespace ArtHub.Services.ServicesImpl
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                Artwork selectedArtwork = _artworkService.GetArtworkById(bid.ArtworkId);
+                Artwork selectedArtwork = new Artwork(_artworkService.GetArtworkById(bid.ArtworkId));
 
                 
 
