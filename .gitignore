@@ -38,3 +38,6 @@ obj/
 
 # Ignore file patterns causing warnings or errors
 .vs/ArtHub/FileContentIndex/*.vsidx
+
+#ignore the environment variable files
+*.env
