@@ -1,23 +1,37 @@
-﻿<Properties StartupConfiguration="{0D43E2D3-518B-4613-A258-5811BBD0FE6D}|https">
-  <MonoDevelop.Ide.ItemProperties.ArtHub PreferredExecutionTarget="/Applications/Brave Browser.app" />
+﻿<Properties StartupConfiguration="{CD844294-7CBF-4012-B1AF-3A44F53EE456}|https">
   <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Program.cs" Line="5" Column="35" />
+      <File FileName="Models/Transaction.cs" />
+      <File FileName="Models/Bid.cs" />
+      <File FileName="Filters/ArtworkFilter.cs" />
+      <File FileName="appsettings.json" />
+      <File FileName="Models/User.cs" />
+      <File FileName="dto/CreateArtworkDto.cs" />
+      <File FileName="dto/BidResponse.cs" />
+      <File FileName="Services/BidService.cs" />
+      <File FileName="Filters/BidFilter.cs" />
+      <File FileName="Controllers/BidController.cs" />
+      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Models/AppDbContext.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ArtHub">
-            <Node name="ArtHub" selected="True" />
+            <Node name="ArtHub" expanded="True">
+              <Node name="Models" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ArtHub PreferredExecutionTarget="/Applications/Brave Browser.app" />
 </Properties>

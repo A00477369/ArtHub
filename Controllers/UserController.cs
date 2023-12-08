@@ -35,29 +35,95 @@ namespace ArtHub.Controllers
         }
 
         [HttpPost, AllowAnonymous]
-        public ActionResult CreateUser([FromBody] CreateUserDto userDto)
+        public async Task<ActionResult> CreateUserAsync(
+            [FromForm] string FirstName,
+            [FromForm] string LastName,
+            [FromForm] string Username,
+            [FromForm] string Email,
+            [FromForm] string Password,
+            [FromForm] string Mobile,
+            [FromForm] IFormFile ImageFile,
+            [FromForm] string Gender,
+            [FromForm] DateTime BirthDate,
+            [FromForm] string City,
+            [FromForm] string Province,
+            [FromForm] string Country,
+            [FromForm] string PostalCode
+            )
         {
+            CreateUserDto userDto = new CreateUserDto();
+            userDto.FirstName = FirstName;
+            userDto.LastName = LastName;
+            userDto.Username = Username;
+            userDto.Email = Email;
+            userDto.Password = Password;
+            userDto.Mobile = Mobile;
+            userDto.ImageFile = ImageFile;
+            userDto.Gender = Gender;
+            userDto.BirthDate = BirthDate;
+            userDto.City = City;
+            userDto.Province = Province;
+            userDto.Country = Country;
+            userDto.PostalCode = PostalCode;
+
             if (userDto == null)
             {
                 return BadRequest("Invalid user data");
             }
+            userDto.ProfilePictureUrl = await SaveImage(userDto.ImageFile);
 
             User createdUser = new User( userDto.FirstName, userDto.LastName, userDto.Username, userDto.Email, userDto.Password, userDto.Mobile, userDto.ProfilePictureUrl, userDto.Gender, userDto.BirthDate, DateTime.Now, DateTime.Now, userDto.City, userDto.Province, userDto.Country, userDto.PostalCode,"true");
-
-            if (createdUser.Validate().isValid)
+            try
             {
-                createdUser = _userService.CreateUser(createdUser);
-                return Ok(createdUser);
+                if (createdUser.Validate().isValid)
+                {
+                    createdUser = _userService.CreateUser(createdUser);
+                    return Ok(createdUser);
+                }
+                else
+                {
+                    return BadRequest(createdUser.Validate().errorMessage);
+                }
             }
-            else
+            catch (InvalidOperationException ex)
             {
-                return BadRequest(createdUser.Validate().errorMessage);
+                return BadRequest(ex.Message);
             }
+            
         }
 
         [HttpPut]
-        public ActionResult UpdateUser([FromBody] UpdateUserDto userDto)
+        public async Task<ActionResult> UpdateUserAsync(
+            [FromForm] int Id,
+            [FromForm] string FirstName,
+            [FromForm] string LastName,
+            [FromForm] string Username,
+            [FromForm] string Email,
+            [FromForm] string Password,
+            [FromForm] string Mobile,
+            [FromForm] IFormFile ImageFile,
+            [FromForm] string Gender,
+            [FromForm] DateTime BirthDate,
+            [FromForm] string City,
+            [FromForm] string Province,
+            [FromForm] string Country,
+            [FromForm] string PostalCode)
         {
+            UpdateUserDto userDto = new UpdateUserDto();
+            userDto.FirstName = FirstName;
+            userDto.LastName = LastName;
+            userDto.Username = Username;
+            userDto.Email = Email;
+            userDto.Password = Password;
+            userDto.Mobile = Mobile;
+            userDto.ImageFile = ImageFile;
+            userDto.Gender = Gender;
+            userDto.BirthDate = BirthDate;
+            userDto.City = City;
+            userDto.Province = Province;
+            userDto.Country = Country;
+            userDto.PostalCode = PostalCode;
+
             if (userDto == null)
             {
                 return BadRequest("Invalid user data");
@@ -73,6 +139,8 @@ namespace ArtHub.Controllers
             {
                 return NotFound("User not Found");
             }
+            userDto.ProfilePictureUrl = await SaveImage(userDto.ImageFile);
+
 
             User newUser = _userService.UpdateUser(userDto, oldUser);
 
@@ -105,13 +173,18 @@ namespace ArtHub.Controllers
         {
             string imageName = new String(Path.GetFileNameWithoutExtension(image.FileName).Take(10).ToArray()).Replace(" ", "-");
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(image.FileName);
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            var relativeImagePath = Path.Combine("Images", imageName);
+
+            var webRootPath = _hostEnvironment.WebRootPath;
+
+            var imagePath = Path.Combine(webRootPath, relativeImagePath);
 
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await image.CopyToAsync(fileStream);
             }
-            return imageName;
+            var imageUrl = "/" + relativeImagePath.Replace("\\", "/");
+            return imageUrl;
         }
     }
 }

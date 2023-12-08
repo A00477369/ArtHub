@@ -39,6 +39,10 @@ namespace ArtHub.Services.ServicesImpl
                     context.Entry(selectedArtwork).State = EntityState.Modified;
                     context.SaveChanges();
                 }
+                else
+                {
+                    throw new InvalidOperationException("Invalid bid: The artwork is not available for bidding or the bid amount does not meet the minimum requirements.");
+                }
 
                 return bid;
             }
