@@ -73,21 +73,57 @@ namespace ArtHub.Controllers
             userDto.ProfilePictureUrl = await SaveImage(userDto.ImageFile);
 
             User createdUser = new User( userDto.FirstName, userDto.LastName, userDto.Username, userDto.Email, userDto.Password, userDto.Mobile, userDto.ProfilePictureUrl, userDto.Gender, userDto.BirthDate, DateTime.Now, DateTime.Now, userDto.City, userDto.Province, userDto.Country, userDto.PostalCode,"true");
-
-            if (createdUser.Validate().isValid)
+            try
             {
-                createdUser = _userService.CreateUser(createdUser);
-                return Ok(createdUser);
+                if (createdUser.Validate().isValid)
+                {
+                    createdUser = _userService.CreateUser(createdUser);
+                    return Ok(createdUser);
+                }
+                else
+                {
+                    return BadRequest(createdUser.Validate().errorMessage);
+                }
             }
-            else
+            catch (InvalidOperationException ex)
             {
-                return BadRequest(createdUser.Validate().errorMessage);
+                return BadRequest(ex.Message);
             }
+            
         }
 
         [HttpPut]
-        public ActionResult UpdateUser([FromBody] UpdateUserDto userDto)
+        public async Task<ActionResult> UpdateUserAsync(
+            [FromBody] int Id,
+            [FromBody] string FirstName,
+            [FromBody] string LastName,
+            [FromBody] string Username,
+            [FromBody] string Email,
+            [FromBody] string Password,
+            [FromBody] string Mobile,
+            [FromBody] IFormFile ImageFile,
+            [FromBody] string Gender,
+            [FromBody] DateTime BirthDate,
+            [FromBody] string City,
+            [FromBody] string Province,
+            [FromBody] string Country,
+            [FromBody] string PostalCode)
         {
+            UpdateUserDto userDto = new UpdateUserDto();
+            userDto.FirstName = FirstName;
+            userDto.LastName = LastName;
+            userDto.Username = Username;
+            userDto.Email = Email;
+            userDto.Password = Password;
+            userDto.Mobile = Mobile;
+            userDto.ImageFile = ImageFile;
+            userDto.Gender = Gender;
+            userDto.BirthDate = BirthDate;
+            userDto.City = City;
+            userDto.Province = Province;
+            userDto.Country = Country;
+            userDto.PostalCode = PostalCode;
+
             if (userDto == null)
             {
                 return BadRequest("Invalid user data");
@@ -103,6 +139,8 @@ namespace ArtHub.Controllers
             {
                 return NotFound("User not Found");
             }
+            userDto.ProfilePictureUrl = await SaveImage(userDto.ImageFile);
+
 
             User newUser = _userService.UpdateUser(userDto, oldUser);
 

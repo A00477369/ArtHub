@@ -49,6 +49,10 @@ namespace ArtHub.Controllers
                     return BadRequest(bid.Validate().errorMessage);
                 }
             }
+            catch(InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (Exception ex)
             {
                 _logger.LogError($"Error creating bid: {ex.Message}");

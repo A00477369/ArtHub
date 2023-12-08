@@ -17,6 +17,14 @@ namespace ArtHub.Services.ServicesImpl
             using (var scope = _scopeFactory.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                User existingUserByUsername = FindUserByIdentity(newUser.Username);
+                User existingUserByEmail = FindUserByIdentity(newUser.Email);
+
+                if (existingUserByUsername != null || existingUserByEmail != null)
+                {
+                    throw new InvalidOperationException("Username or email is already taken.");
+                }
                 context.Users.Add(newUser);
                 context.SaveChanges();
                 return newUser;
