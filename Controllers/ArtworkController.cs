@@ -56,12 +56,14 @@ namespace ArtHub.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateArtworkAsync([FromForm] string title,
-    [FromForm] string description,
-    [FromForm] IFormFile imageFile,
-    [FromForm] double minimumBid,
-    [FromForm] int sellerId,
-    [FromForm] int categoryId)
+        public async Task<ActionResult> CreateArtworkAsync(
+            [FromForm] string title,
+            [FromForm] string description,
+            [FromForm] IFormFile imageFile,
+            [FromForm] double minimumBid,
+            [FromForm] int sellerId,
+            [FromForm] int categoryId
+            )
         {
             CreateArtworkDto artworkDto = new CreateArtworkDto();
             artworkDto.Title = title;
@@ -106,8 +108,24 @@ namespace ArtHub.Controllers
         }
 
         [HttpPut]
-        public ActionResult UpdateArtwork([FromBody] UpdateArtworkDto artworkDto)
+        public async Task<ActionResult> UpdateArtworkAsync(
+            [FromForm] int Id,
+            [FromForm] string title,
+            [FromForm] string description,
+            [FromForm] IFormFile imageFile,
+            [FromForm] double minimumBid,
+            [FromForm] int categoryId
+            )
         {
+            UpdateArtworkDto artworkDto = new UpdateArtworkDto();
+            artworkDto.Id = Id;
+            artworkDto.Title = title;
+            artworkDto.Description = description;
+            artworkDto.ImageFile = imageFile;
+            artworkDto.ImageUrl = "";
+            artworkDto.MinimumBid = minimumBid;
+            artworkDto.CategoryId = categoryId;
+
             try
             {
                 _logger.LogInformation("Updating artwork");
@@ -127,6 +145,8 @@ namespace ArtHub.Controllers
                 }
 
                 Artwork existingArtwork = new Artwork(existingArtworkResponse);
+
+                artworkDto.ImageUrl = await SaveImage(artworkDto.ImageFile);
 
                 Artwork updatedArtwork = _artworkService.UpdateArtwork(artworkDto, existingArtwork);
                 _logger.LogInformation($"Artwork updated successfully with ID: {updatedArtwork.Id}");

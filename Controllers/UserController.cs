@@ -35,12 +35,42 @@ namespace ArtHub.Controllers
         }
 
         [HttpPost, AllowAnonymous]
-        public ActionResult CreateUser([FromBody] CreateUserDto userDto)
+        public async Task<ActionResult> CreateUserAsync(
+            [FromBody] string FirstName,
+            [FromBody] string LastName,
+            [FromBody] string Username,
+            [FromBody] string Email,
+            [FromBody] string Password,
+            [FromBody] string Mobile,
+            [FromBody] IFormFile ImageFile,
+            [FromBody] string Gender,
+            [FromBody] DateTime BirthDate,
+            [FromBody] string City,
+            [FromBody] string Province,
+            [FromBody] string Country,
+            [FromBody] string PostalCode
+            )
         {
+            CreateUserDto userDto = new CreateUserDto();
+            userDto.FirstName = FirstName;
+            userDto.LastName = LastName;
+            userDto.Username = Username;
+            userDto.Email = Email;
+            userDto.Password = Password;
+            userDto.Mobile = Mobile;
+            userDto.ImageFile = ImageFile;
+            userDto.Gender = Gender;
+            userDto.BirthDate = BirthDate;
+            userDto.City = City;
+            userDto.Province = Province;
+            userDto.Country = Country;
+            userDto.PostalCode = PostalCode;
+
             if (userDto == null)
             {
                 return BadRequest("Invalid user data");
             }
+            userDto.ProfilePictureUrl = await SaveImage(userDto.ImageFile);
 
             User createdUser = new User( userDto.FirstName, userDto.LastName, userDto.Username, userDto.Email, userDto.Password, userDto.Mobile, userDto.ProfilePictureUrl, userDto.Gender, userDto.BirthDate, DateTime.Now, DateTime.Now, userDto.City, userDto.Province, userDto.Country, userDto.PostalCode,"true");
 
