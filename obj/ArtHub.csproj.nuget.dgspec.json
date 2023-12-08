@@ -1,27 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\Desktop\\New folder\\ArtHub\\ArtHub.csproj": {}
+    "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\Desktop\\New folder\\ArtHub\\ArtHub.csproj": {
+    "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\New folder\\ArtHub\\ArtHub.csproj",
+        "projectUniqueName": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj",
         "projectName": "ArtHub",
-        "projectPath": "C:\\Users\\ASUS\\Desktop\\New folder\\ArtHub\\ArtHub.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\Desktop\\New folder\\ArtHub\\obj\\",
+        "projectPath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/ArtHub.csproj",
+        "packagesPath": "/Users/mehta/.nuget/packages/",
+        "outputPath": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/mehta/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/sdk/7.0.309/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
         }
       }
     }

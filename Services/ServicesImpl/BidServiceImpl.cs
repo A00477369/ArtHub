@@ -1,5 +1,6 @@
 ﻿using System;
 using ArtHub.Controllers;
+using ArtHub.dto;
 using ArtHub.Filters;
 using ArtHub.Models;
 using Microsoft.EntityFrameworkCore;
@@ -43,7 +44,7 @@ namespace ArtHub.Services.ServicesImpl
             }
         }
 
-        public List<Bid> filter(BidFilter filter)
+        public List<BidResponse> filter(BidFilter filter)
         {
             using (var scope = _scopeFactory.CreateScope())
             {
@@ -52,11 +53,26 @@ namespace ArtHub.Services.ServicesImpl
                 IQueryable<Bid> query = context.Bids;
 
                 query = filter.ApplyFilter(query);
-
-                return query.ToList();
+                List<BidResponse> bids = query.Select(a => new BidResponse
+                {
+                    Id = a.Id,
+                    BidderId = a.BidderId,
+                    CreatedOn = a.CreatedOn,
+                    ArtworkId = a.ArtworkId,
+                    BidAmount = a.BidAmount,
+                    Successful = a.Successful,
+                    BidderName = GetBidderName(context, a.BidderId)
+                }).ToList();
+               
+                return bids;
             }
         }
 
+        private static string GetBidderName(AppDbContext context, int bidderId)
+        {
+            var bidder = context.Users.FirstOrDefault(s => s.Id == bidderId);
+            return bidder != null ? bidder.FirstName + " " + bidder.LastName : null;
+        }
         public Bid FindBidById(int id)
         {
             using (var scope = _scopeFactory.CreateScope())

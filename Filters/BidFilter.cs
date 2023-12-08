@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.NetworkInformation;
+using ArtHub.dto;
 using ArtHub.Models;
 
 namespace ArtHub.Filters

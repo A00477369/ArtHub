@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CfC341DtnbIaY7FO8XoQXEgehRIOQ+h/6KLd4NLP1+E=",
+  "Hash": "UxPNvaHRqe5lWcBhks/xQWHXuQVn5bxyTmFXwv5HXKw=",
   "Source": "ArtHub",
   "BasePath": "_content/ArtHub",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/Images/IMG_6071--230305865.jpg",
+      "SourceId": "ArtHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/",
+      "BasePath": "_content/ArtHub",
+      "RelativePath": "Images/IMG_6071--230305865.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Images/IMG_6071--230305865.jpg"
     },
     {
       "Identity": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/index.html",

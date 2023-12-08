@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets/.DS_Store"
     },
     {
+      "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/Images/IMG_6071--230305865.jpg",
+      "PackagePath": "staticwebassets/Images/IMG_6071--230305865.jpg"
+    },
+    {
       "Id": "/Users/mehta/Desktop/smu/Sem1/Software Development/Repos/ArtHub1/ArtHub/wwwroot/asset-manifest.json",
       "PackagePath": "staticwebassets/asset-manifest.json"
     },

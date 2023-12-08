@@ -63,7 +63,7 @@ namespace ArtHub.Controllers
             {
                 _logger.LogInformation("Filtering bids");
 
-                List<Bid> bids = _bidService.filter(filter);
+                List<BidResponse> bids = _bidService.filter(filter);
                 _logger.LogInformation($"Filtered {bids.Count} bids");
                 return Ok(bids);
             }

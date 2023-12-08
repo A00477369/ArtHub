@@ -37,7 +37,6 @@ namespace ArtHub.Services.ServicesImpl
 
                 IQueryable<Artwork> query = context.Artworks;
 
-                // Apply the filter logic from the ArtworkFilter class
                 query = filter.ApplyFilter(query);
 
                 List<ArtworkResponse> filteredArtworks = query
