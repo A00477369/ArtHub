@@ -36,19 +36,19 @@ namespace ArtHub.Controllers
 
         [HttpPost, AllowAnonymous]
         public async Task<ActionResult> CreateUserAsync(
-            [FromBody] string FirstName,
-            [FromBody] string LastName,
-            [FromBody] string Username,
-            [FromBody] string Email,
-            [FromBody] string Password,
-            [FromBody] string Mobile,
-            [FromBody] IFormFile ImageFile,
-            [FromBody] string Gender,
-            [FromBody] DateTime BirthDate,
-            [FromBody] string City,
-            [FromBody] string Province,
-            [FromBody] string Country,
-            [FromBody] string PostalCode
+            [FromForm] string FirstName,
+            [FromForm] string LastName,
+            [FromForm] string Username,
+            [FromForm] string Email,
+            [FromForm] string Password,
+            [FromForm] string Mobile,
+            [FromForm] IFormFile ImageFile,
+            [FromForm] string Gender,
+            [FromForm] DateTime BirthDate,
+            [FromForm] string City,
+            [FromForm] string Province,
+            [FromForm] string Country,
+            [FromForm] string PostalCode
             )
         {
             CreateUserDto userDto = new CreateUserDto();
@@ -94,20 +94,20 @@ namespace ArtHub.Controllers
 
         [HttpPut]
         public async Task<ActionResult> UpdateUserAsync(
-            [FromBody] int Id,
-            [FromBody] string FirstName,
-            [FromBody] string LastName,
-            [FromBody] string Username,
-            [FromBody] string Email,
-            [FromBody] string Password,
-            [FromBody] string Mobile,
-            [FromBody] IFormFile ImageFile,
-            [FromBody] string Gender,
-            [FromBody] DateTime BirthDate,
-            [FromBody] string City,
-            [FromBody] string Province,
-            [FromBody] string Country,
-            [FromBody] string PostalCode)
+            [FromForm] int Id,
+            [FromForm] string FirstName,
+            [FromForm] string LastName,
+            [FromForm] string Username,
+            [FromForm] string Email,
+            [FromForm] string Password,
+            [FromForm] string Mobile,
+            [FromForm] IFormFile ImageFile,
+            [FromForm] string Gender,
+            [FromForm] DateTime BirthDate,
+            [FromForm] string City,
+            [FromForm] string Province,
+            [FromForm] string Country,
+            [FromForm] string PostalCode)
         {
             UpdateUserDto userDto = new UpdateUserDto();
             userDto.FirstName = FirstName;
