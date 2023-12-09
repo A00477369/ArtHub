@@ -59,15 +59,15 @@ namespace ArtHub.Controllers
 
             Transaction createdTransaction = new Transaction(createTransactionDto.BidId,createTransactionDto.CardHolderFirstName,createTransactionDto.CardHolderLastName,createTransactionDto.City,createTransactionDto.Province, createTransactionDto.Country,createTransactionDto.PostalCode,createTransactionDto.CardType,createTransactionDto.CardNumber,createTransactionDto.ExpiryDate,createTransactionDto.CVV);
 
-            if (createdTransaction.Validate().isValid)
-            {
+            // if (createdTransaction.Validate().isValid)
+            // {
                 createdTransaction = _transactionService.CreateTransaction(createdTransaction);
                 return Ok(createdTransaction);
-            }
-            else
-            {
-                return BadRequest(createdTransaction.Validate().errorMessage);
-            }
+            // }
+            // else
+            // {
+            //     return BadRequest(createdTransaction.Validate().errorMessage);
+            // }
 
         }
 
