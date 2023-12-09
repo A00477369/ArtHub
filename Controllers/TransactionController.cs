@@ -52,12 +52,12 @@ namespace ArtHub.Controllers
                 createTransactionDto.CardHolderFirstName = user.FirstName;
                 createTransactionDto.CardHolderLastName = user.LastName;
                 createTransactionDto.City = user.City;
-                createTransactionDto.State = user.Province;
+                createTransactionDto.Province = user.Province;
                 createTransactionDto.Country = user.Country;
                 createTransactionDto.PostalCode = user.PostalCode;
             }
 
-            Transaction createdTransaction = new Transaction(createTransactionDto.BidId,createTransactionDto.CardHolderFirstName,createTransactionDto.CardHolderLastName,createTransactionDto.City,createTransactionDto.State,createTransactionDto.Country,createTransactionDto.PostalCode,createTransactionDto.CardType,createTransactionDto.CardNumber,createTransactionDto.ExpiryDate,createTransactionDto.CVV);
+            Transaction createdTransaction = new Transaction(createTransactionDto.BidId,createTransactionDto.CardHolderFirstName,createTransactionDto.CardHolderLastName,createTransactionDto.City,createTransactionDto.Province, createTransactionDto.Country,createTransactionDto.PostalCode,createTransactionDto.CardType,createTransactionDto.CardNumber,createTransactionDto.ExpiryDate,createTransactionDto.CVV);
 
             if (createdTransaction.Validate().isValid)
             {
