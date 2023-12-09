@@ -71,7 +71,7 @@ namespace ArtHub.Controllers
 
         }
 
-     
+
     }
 }
 
